@@ -1,0 +1,210 @@
+{% extends 'base.html' %}
+
+{% block title %}Confirm Delete - Meal & Inventory System{% endblock %}
+
+{% block extra_css %}
+<style>
+    .delete-container {
+        min-height: calc(100vh - 200px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+    }
+
+    .delete-card {
+        background: var(--surface-color);
+        border-radius: 1rem;
+        box-shadow: var(--shadow-lg);
+        overflow: hidden;
+        max-width: 500px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .delete-header {
+        background: linear-gradient(135deg, var(--accent-color), #b91c1c);
+        color: white;
+        padding: 2rem;
+    }
+
+    .delete-icon {
+        width: 4rem;
+        height: 4rem;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        font-size: 1.5rem;
+    }
+
+    .delete-title {
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+
+    .delete-subtitle {
+        opacity: 0.9;
+        font-size: 1rem;
+    }
+
+    .delete-body {
+        padding: 2rem;
+    }
+
+    .delete-message {
+        font-size: 1.125rem;
+        color: var(--text-secondary);
+        margin-bottom: 2rem;
+        line-height: 1.6;
+    }
+
+    .item-name {
+        font-weight: 700;
+        color: var(--text-primary);
+        background: #f3f4f6;
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        display: inline-block;
+        margin: 0.5rem 0;
+    }
+
+    .warning-box {
+        background: #fef2f2;
+        border: 1px solid #fecaca;
+        border-radius: 0.75rem;
+        padding: 1rem;
+        margin-bottom: 2rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-align: left;
+    }
+
+    .warning-icon {
+        color: var(--accent-color);
+        font-size: 1.25rem;
+        flex-shrink: 0;
+    }
+
+    .warning-text {
+        color: #991b1b;
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+    .delete-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.875rem 1.75rem;
+        border: none;
+        border-radius: 0.75rem;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-size: 0.875rem;
+        min-width: 140px;
+        justify-content: center;
+    }
+
+    .btn-danger {
+        background: linear-gradient(135deg, var(--accent-color), #b91c1c);
+        color: white;
+        box-shadow: var(--shadow);
+    }
+
+    .btn-danger:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+        text-decoration: none;
+        color: white;
+    }
+
+    .btn-secondary {
+        background-color: #f3f4f6;
+        color: var(--text-primary);
+        border: 2px solid var(--border-color);
+    }
+
+    .btn-secondary:hover {
+        background-color: #e5e7eb;
+        border-color: var(--text-secondary);
+        text-decoration: none;
+        color: var(--text-primary);
+    }
+
+    @media (max-width: 768px) {
+        .delete-header {
+            padding: 1.5rem;
+        }
+
+        .delete-title {
+            font-size: 1.5rem;
+        }
+
+        .delete-body {
+            padding: 1.5rem;
+        }
+
+        .delete-actions {
+            flex-direction: column;
+            align-items: stretch;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="delete-container">
+    <div class="delete-card">
+        <div class="delete-header">
+            <div class="delete-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h1 class="delete-title">Confirm Delete</h1>
+            <p class="delete-subtitle">This action cannot be undone</p>
+        </div>
+
+        <div class="delete-body">
+            <p class="delete-message">
+                Are you sure you want to delete the ingredient
+                <span class="item-name">{{ ingredient.name }}</span>
+                from your inventory?
+            </p>
+
+            <div class="warning-box">
+                <i class="fas fa-exclamation-triangle warning-icon"></i>
+                <div class="warning-text">
+                    This will permanently remove the ingredient and all associated data. Any meals using this ingredient may be affected.
+                </div>
+            </div>
+
+            <div class="delete-actions">
+                <a href="{% url 'ingredient_list' %}" class="btn btn-secondary">
+                    <i class="fas fa-times"></i>
+                    Cancel
+                </a>
+                <form method="post" style="display: inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">
+                        <i class="fas fa-trash"></i>
+                        Yes, Delete
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

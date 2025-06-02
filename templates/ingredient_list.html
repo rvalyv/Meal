@@ -1,0 +1,376 @@
+{% extends 'base.html' %}
+
+{% block title %}Ingredients - Meal & Inventory System{% endblock %}
+
+{% block extra_css %}
+<style>
+    .page-header {
+        margin-bottom: 2rem;
+    }
+
+    .page-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+    }
+
+    .header-actions {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .search-form {
+        display: flex;
+        gap: 0.75rem;
+        margin-bottom: 2rem;
+        max-width: 500px;
+    }
+
+    .search-input-wrapper {
+        position: relative;
+        flex: 1;
+    }
+
+    .search-input {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        padding-right: 2.5rem;
+        border: 2px solid var(--border-color);
+        border-radius: 0.75rem;
+        font-size: 1rem;
+        transition: all 0.2s;
+        background-color: white;
+    }
+
+    .search-input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+    }
+
+    .clear-btn {
+        position: absolute;
+        right: 0.75rem;
+        top: 50%;
+        transform: translateY(-50%);
+        background: none;
+        border: none;
+        color: var(--text-secondary);
+        cursor: pointer;
+        padding: 0.25rem;
+        border-radius: 50%;
+        transition: all 0.2s;
+    }
+
+    .clear-btn:hover {
+        color: var(--accent-color);
+        background-color: #fef2f2;
+    }
+
+    .search-btn {
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        color: white;
+        border: none;
+        border-radius: 0.75rem;
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .search-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .table-container {
+        background: var(--surface-color);
+        border-radius: 1rem;
+        box-shadow: var(--shadow-lg);
+        overflow: hidden;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .table-header {
+        background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+        border-bottom: 2px solid var(--border-color);
+    }
+
+    .table-header th {
+        padding: 1rem 1.5rem;
+        text-align: left;
+        font-weight: 600;
+        color: var(--text-primary);
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .table-row {
+        border-bottom: 1px solid var(--border-color);
+        transition: all 0.2s;
+    }
+
+    .table-row:hover {
+        background-color: #f8fafc;
+    }
+
+    .table-row:last-child {
+        border-bottom: none;
+    }
+
+    .table-cell {
+        padding: 1rem 1.5rem;
+        color: var(--text-primary);
+    }
+
+    .stock-low {
+        color: var(--accent-color);
+        font-weight: 600;
+        background-color: #fef2f2;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.375rem;
+        font-size: 0.875rem;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+    }
+
+    .btn-small {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+    }
+
+    .btn-edit {
+        background-color: var(--secondary-color);
+        color: white;
+    }
+
+    .btn-edit:hover {
+        background-color: #d97706;
+        transform: translateY(-1px);
+        text-decoration: none;
+        color: white;
+    }
+
+    .btn-delete {
+        background-color: var(--accent-color);
+        color: white;
+    }
+
+    .btn-delete:hover {
+        background-color: #b91c1c;
+        transform: translateY(-1px);
+        text-decoration: none;
+        color: white;
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 3rem 1.5rem;
+        color: var(--text-secondary);
+    }
+
+    .empty-icon {
+        font-size: 3rem;
+        color: var(--border-color);
+        margin-bottom: 1rem;
+    }
+
+    .back-link {
+        margin-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+        .page-header {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 1rem;
+        }
+
+        .header-actions {
+            justify-content: center;
+        }
+
+        .search-form {
+            flex-direction: column;
+            max-width: none;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        .action-buttons {
+            flex-direction: column;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="page-header flex justify-between items-center">
+    <h1 class="page-title">
+        <i class="fas fa-leaf" style="color: var(--primary-color);"></i>
+        Ingredients
+    </h1>
+    {% if user.profile.role == 'admin' or user.profile.role == 'manager' %}
+    <div class="header-actions">
+        <a href="{% url 'create_ingredient' %}" class="btn btn-primary">
+            <i class="fas fa-plus"></i>
+            Create Ingredient
+        </a>
+        <a href="{% url 'create_delivery' %}" class="btn btn-outline">
+            <i class="fas fa-truck"></i>
+            Create Delivery
+        </a>
+    </div>
+    {% endif %}
+</div>
+
+<form method="get" class="search-form">
+    <div class="search-input-wrapper">
+        <input
+            type="text"
+            name="q"
+            value="{{ query }}"
+            id="search-input"
+            class="search-input"
+            placeholder="Search ingredients by name..."
+        />
+        <button
+            type="button"
+            id="clear-btn"
+            class="clear-btn"
+            style="display: none;"
+        >
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    <button type="submit" class="search-btn">
+        <i class="fas fa-search"></i>
+        Search
+    </button>
+</form>
+
+<div class="table-container">
+    <table class="table">
+        <thead class="table-header">
+            <tr>
+                <th>
+                    <i class="fas fa-tag"></i>
+                    Name
+                </th>
+                <th>
+                    <i class="fas fa-boxes"></i>
+                    Stock (g)
+                </th>
+                <th>
+                    <i class="fas fa-exclamation-triangle"></i>
+                    Threshold (g)
+                </th>
+                {% if user.profile.role == 'admin' or user.profile.role == 'manager' %}
+                <th>
+                    <i class="fas fa-cogs"></i>
+                    Actions
+                </th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for ingredient in ingredients %}
+            <tr class="table-row">
+                <td class="table-cell">
+                    <strong>{{ ingredient.name }}</strong>
+                </td>
+                <td class="table-cell">
+                    {% if ingredient.stock_quantity <= ingredient.treshold_quantity %}
+                        <span class="stock-low">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            {{ ingredient.stock_quantity }}
+                        </span>
+                    {% else %}
+                        {{ ingredient.stock_quantity }}
+                    {% endif %}
+                </td>
+                <td class="table-cell">
+                    {{ ingredient.treshold_quantity }}
+                </td>
+                {% if user.profile.role == 'admin' or user.profile.role == 'manager' %}
+                <td class="table-cell">
+                    <div class="action-buttons">
+                        <a href="{% url 'update_ingredient' ingredient.id %}" class="btn-small btn-edit">
+                            <i class="fas fa-edit"></i>
+                            Edit
+                        </a>
+                        <a href="{% url 'delete_ingredient' ingredient.id %}" class="btn-small btn-delete">
+                            <i class="fas fa-trash"></i>
+                            Delete
+                        </a>
+                    </div>
+                </td>
+                {% endif %}
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="{% if user.profile.role == 'admin' or user.profile.role == 'manager' %}4{% else %}3{% endif %}" class="empty-state">
+                    <div class="empty-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <p><strong>No ingredients found</strong></p>
+                    <p>{% if query %}Try adjusting your search terms{% else %}Start by creating your first ingredient{% endif %}</p>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="back-link">
+    <a href="{% url 'dashboard' %}" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i>
+        Back to Dashboard
+    </a>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    const input = document.getElementById('search-input');
+    const clearBtn = document.getElementById('clear-btn');
+
+    function toggleClearButton() {
+        clearBtn.style.display = input.value ? 'block' : 'none';
+    }
+
+    clearBtn.addEventListener('click', () => {
+        input.value = '';
+        toggleClearButton();
+        input.form.submit();
+    });
+
+    input.addEventListener('input', toggleClearButton);
+    window.addEventListener('DOMContentLoaded', toggleClearButton);
+</script>
+{% endblock %}

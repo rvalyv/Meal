@@ -1,0 +1,239 @@
+{% extends 'base.html' %}
+
+{% block title %}Serve Meal - {{ meal.name }}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .serve-container {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .serve-card {
+        background: var(--surface-color);
+        border-radius: 1rem;
+        box-shadow: var(--shadow-lg);
+        overflow: hidden;
+    }
+
+    .serve-header {
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        color: white;
+        padding: 2rem;
+        text-align: center;
+    }
+
+    .serve-icon {
+        width: 4rem;
+        height: 4rem;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        font-size: 1.5rem;
+    }
+
+    .serve-title {
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+
+    .meal-name {
+        background: rgba(255, 255, 255, 0.2);
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        display: inline-block;
+        margin: 0.5rem 0;
+        font-weight: 600;
+    }
+
+    .serve-body {
+        padding: 2rem;
+    }
+
+    .portions-info {
+        background: #f0fdf4;
+        border: 2px solid #bbf7d0;
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+
+    .portions-label {
+        font-size: 1rem;
+        color: var(--text-secondary);
+        margin-bottom: 0.5rem;
+    }
+
+    .portions-value {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .form-group {
+        margin-bottom: 2rem;
+    }
+
+    .form-label {
+        display: block;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 0.75rem;
+        font-size: 1rem;
+    }
+
+    .quantity-input {
+        width: 100%;
+        padding: 1rem;
+        border: 2px solid var(--border-color);
+        border-radius: 0.75rem;
+        font-size: 1.25rem;
+        text-align: center;
+        font-weight: 600;
+        transition: all 0.2s;
+        background-color: white;
+    }
+
+    .quantity-input:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 4px rgba(5, 150, 105, 0.1);
+    }
+
+    .form-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 0.75rem;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-size: 1rem;
+        min-width: 140px;
+        justify-content: center;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        color: white;
+        box-shadow: var(--shadow);
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+        text-decoration: none;
+        color: white;
+    }
+
+    .btn-secondary {
+        background-color: #f3f4f6;
+        color: var(--text-primary);
+        border: 2px solid var(--border-color);
+    }
+
+    .btn-secondary:hover {
+        background-color: #e5e7eb;
+        border-color: var(--text-secondary);
+        text-decoration: none;
+        color: var(--text-primary);
+    }
+
+    @media (max-width: 768px) {
+        .serve-header {
+            padding: 1.5rem;
+        }
+
+        .serve-title {
+            font-size: 1.5rem;
+        }
+
+        .serve-body {
+            padding: 1.5rem;
+        }
+
+        .portions-value {
+            font-size: 2rem;
+        }
+
+        .form-actions {
+            flex-direction: column;
+            align-items: stretch;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="serve-container">
+    <div class="serve-card">
+        <div class="serve-header">
+            <div class="serve-icon">
+                <i class="fas fa-utensils"></i>
+            </div>
+            <h1 class="serve-title">Serve Meal</h1>
+            <div class="meal-name">{{ meal.name }}</div>
+        </div>
+
+        <div class="serve-body">
+            <div class="portions-info">
+                <p class="portions-label">Maximum portions available:</p>
+                <div class="portions-value">
+                    <i class="fas fa-users"></i>
+                    {{ portions }}
+                </div>
+            </div>
+
+            <form method="post">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="serve_quantity" class="form-label">
+                        <i class="fas fa-calculator"></i>
+                        Enter portions to serve:
+                    </label>
+                    <input
+                        type="number"
+                        class="quantity-input"
+                        id="serve_quantity"
+                        name="serve_quantity"
+                        min="1"
+                        max="{{ portions }}"
+                        placeholder="Enter number of portions"
+                        required
+                    >
+                </div>
+
+                <div class="form-actions">
+                    <a href="{% url 'meal_list' %}" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Meals
+                    </a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-check"></i>
+                        Serve Meal
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

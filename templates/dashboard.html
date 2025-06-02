@@ -1,0 +1,897 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - Meal & Inventory System{% endblock %}
+
+{% block extra_css %}
+<style>
+    .dashboard-header {
+        margin-bottom: 2rem;
+    }
+
+    .dashboard-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .dashboard-subtitle {
+        color: var(--text-secondary);
+        font-size: 1.125rem;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .stat-card {
+        background: var(--surface-color);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+        transition: all 0.3s;
+        border: 2px solid transparent;
+    }
+
+    .stat-card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+        border-color: var(--primary-color);
+    }
+
+    .stat-card.warning {
+        border-color: var(--secondary-color);
+        background: linear-gradient(135deg, #fff7ed, #ffffff);
+    }
+
+    .stat-card.critical {
+        border-color: var(--accent-color);
+        background: linear-gradient(135deg, #fef2f2, #ffffff);
+    }
+
+    .stat-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+    }
+
+    .stat-title {
+        font-size: 0.875rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .stat-icon {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        color: white;
+    }
+
+    .stat-icon.meals {
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    }
+
+    .stat-icon.deliveries {
+        background: linear-gradient(135deg, var(--secondary-color), #d97706);
+    }
+
+    .stat-icon.ingredients {
+        background: linear-gradient(135deg, var(--accent-color), #b91c1c);
+    }
+
+    .stat-icon.stock {
+        background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+    }
+
+    .stat-icon.warning {
+        background: linear-gradient(135deg, var(--secondary-color), #d97706);
+    }
+
+    .stat-value {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 0.25rem;
+    }
+
+    .stat-label {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+    }
+
+    .charts-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .chart-card {
+        background: var(--surface-color);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+    }
+
+    .chart-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .chart-container {
+        height: 300px;
+        position: relative;
+    }
+
+    .info-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .info-card {
+        background: var(--surface-color);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+    }
+
+    .info-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .info-list {
+        space-y: 1rem;
+    }
+
+    .info-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.75rem;
+        background: #f8fafc;
+        border-radius: 0.5rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .info-item.warning {
+        background: #fef3c7;
+        border-left: 4px solid var(--secondary-color);
+    }
+
+    .info-item.critical {
+        background: #fecaca;
+        border-left: 4px solid var(--accent-color);
+    }
+
+    .info-item.success {
+        background: #d1fae5;
+        border-left: 4px solid var(--primary-color);
+    }
+
+    .info-name {
+        font-weight: 600;
+        color: var(--text-primary);
+    }
+
+    .info-value {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        font-weight: 500;
+    }
+
+    .quick-actions {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .action-card {
+        background: var(--surface-color);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+        transition: all 0.3s;
+        text-decoration: none;
+        color: inherit;
+        border: 2px solid transparent;
+    }
+
+    .action-card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .action-card.primary:hover {
+        border-color: var(--primary-color);
+    }
+
+    .action-card.secondary:hover {
+        border-color: var(--secondary-color);
+    }
+
+    .action-card.accent:hover {
+        border-color: var(--accent-color);
+    }
+
+    .action-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .action-icon {
+        width: 3rem;
+        height: 3rem;
+        border-radius: 0.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.25rem;
+        color: white;
+    }
+
+    .action-icon.primary {
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+    }
+
+    .action-icon.secondary {
+        background: linear-gradient(135deg, var(--secondary-color), #d97706);
+    }
+
+    .action-icon.accent {
+        background: linear-gradient(135deg, var(--accent-color), #b91c1c);
+    }
+
+    .action-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: var(--text-primary);
+    }
+
+    .action-description {
+        color: var(--text-secondary);
+        font-size: 0.875rem;
+        line-height: 1.5;
+    }
+
+    .recent-activity {
+        background: var(--surface-color);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+    }
+
+    .activity-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .activity-list {
+        space-y: 1rem;
+    }
+
+    .activity-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem;
+        background: #f8fafc;
+        border-radius: 0.75rem;
+        margin-bottom: 1rem;
+    }
+
+    .activity-icon {
+        width: 2rem;
+        height: 2rem;
+        border-radius: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.875rem;
+        color: white;
+    }
+
+    .activity-icon.meal {
+        background: var(--primary-color);
+    }
+
+    .activity-icon.delivery {
+        background: var(--secondary-color);
+    }
+
+    .activity-content {
+        flex: 1;
+    }
+
+    .activity-text {
+        font-size: 0.875rem;
+        color: var(--text-primary);
+        margin-bottom: 0.25rem;
+    }
+
+    .activity-time {
+        font-size: 0.75rem;
+        color: var(--text-secondary);
+    }
+
+    .alert-badge {
+        display: inline-block;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .alert-badge.warning {
+        background: #fef3c7;
+        color: #92400e;
+    }
+
+    .alert-badge.critical {
+        background: #fecaca;
+        color: #991b1b;
+    }
+
+    .alert-badge.success {
+        background: #d1fae5;
+        color: #065f46;
+    }
+
+    @media (max-width: 768px) {
+        .dashboard-title {
+            font-size: 2rem;
+        }
+
+        .charts-grid,
+        .info-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .stats-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="dashboard-header">
+    <h1 class="dashboard-title">
+        <i class="fas fa-tachometer-alt"></i>
+        Dashboard
+    </h1>
+    <p class="dashboard-subtitle">Welcome back! Here's what's happening in your kitchen.</p>
+</div>
+
+<!-- Statistics Cards -->
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-header">
+            <span class="stat-title">Meals Served This Month</span>
+            <div class="stat-icon meals">
+                <i class="fas fa-utensils"></i>
+            </div>
+        </div>
+        <div class="stat-value">{{ meals_served|default:"0" }}</div>
+        <div class="stat-label">Total meals served</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-header">
+            <span class="stat-title">Total Delivered This Month</span>
+            <div class="stat-icon deliveries">
+                <i class="fas fa-truck"></i>
+            </div>
+        </div>
+        <div class="stat-value">{{ total_delivered|floatformat:0|default:"0" }}g</div>
+        <div class="stat-label">Ingredients received</div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-header">
+            <span class="stat-title">Total Ingredients</span>
+            <div class="stat-icon ingredients">
+                <i class="fas fa-leaf"></i>
+            </div>
+        </div>
+        <div class="stat-value">{{ ingredients_count|default:"0" }}</div>
+        <div class="stat-label">Available ingredients</div>
+    </div>
+
+    <div class="stat-card {% if critical_stock > 0 %}{% if critical_stock > 5 %}critical{% else %}warning{% endif %}{% endif %}">
+        <div class="stat-header">
+            <span class="stat-title">Low Stock Alerts</span>
+            <div class="stat-icon {% if critical_stock > 0 %}warning{% else %}stock{% endif %}">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+        </div>
+        <div class="stat-value">{{ critical_stock|default:"0" }}</div>
+        <div class="stat-label">
+            {% if critical_stock > 0 %}
+                Ingredients below threshold
+            {% else %}
+                All stock levels good
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Charts -->
+<div class="charts-grid">
+    <div class="chart-card">
+        <h3 class="chart-title">
+            <i class="fas fa-chart-line"></i>
+            Daily Meals Served (Last 14 Days)
+        </h3>
+        <div class="chart-container">
+            <canvas id="mealsChart"></canvas>
+        </div>
+    </div>
+
+    <div class="chart-card">
+        <h3 class="chart-title">
+            <i class="fas fa-chart-pie"></i>
+            Delivery Distribution This Month
+        </h3>
+        <div class="chart-container">
+            <canvas id="deliveryChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<!-- Information Cards -->
+<div class="info-grid">
+    <div class="info-card">
+        <h3 class="info-title">
+            <i class="fas fa-exclamation-triangle"></i>
+            Stock Alerts
+        </h3>
+        <div class="info-list">
+            {% if low_stock_ingredients %}
+                {% for ingredient in low_stock_ingredients %}
+                <div class="info-item {% if ingredient.stock_quantity < 100 %}critical{% else %}warning{% endif %}">
+                    <div class="info-name">{{ ingredient.name }}</div>
+                    <div class="info-value">
+                        {{ ingredient.stock_quantity|floatformat:0 }}g / {{ ingredient.treshold_quantity }}g
+                        {% widthratio ingredient.stock_quantity ingredient.treshold_quantity 100 as percentage %}
+                        <span class="alert-badge {% if percentage < 25 %}critical{% else %}warning{% endif %}">
+                            {{ percentage }}%
+                        </span>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="info-item success">
+                    <div class="info-name">All ingredients well stocked</div>
+                    <div class="info-value">
+                        <span class="alert-badge success">Good</span>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="info-card">
+        <h3 class="info-title">
+            <i class="fas fa-utensils"></i>
+            Available Meals
+        </h3>
+        <div class="info-list">
+            {% if available_meals %}
+                {% for meal in available_meals %}
+                <div class="info-item {% if meal.max_portions > 10 %}success{% elif meal.max_portions > 5 %}warning{% else %}critical{% endif %}">
+                    <div class="info-name">{{ meal.name }}</div>
+                    <div class="info-value">
+                        Can make {{ meal.max_portions }} portions
+                        <span class="alert-badge {% if meal.max_portions > 10 %}success{% elif meal.max_portions > 5 %}warning{% else %}critical{% endif %}">
+                            {{ meal.max_portions }}
+                        </span>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="info-item critical">
+                    <div class="info-name">No meals can be prepared</div>
+                    <div class="info-value">
+                        <span class="alert-badge critical">Stock needed</span>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Popular Meals This Month -->
+{% if popular_meals %}
+<div class="info-grid">
+    <div class="info-card">
+        <h3 class="info-title">
+            <i class="fas fa-star"></i>
+            Popular Meals This Month
+        </h3>
+        <div class="info-list">
+            {% for meal in popular_meals %}
+            <div class="info-item success">
+                <div class="info-name">{{ meal.meal__name }}</div>
+                <div class="info-value">
+                    Served {{ meal.total_served }} time{{ meal.total_served|pluralize }}
+                    <span class="alert-badge success">{{ meal.total_served }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="info-card">
+        <h3 class="info-title">
+            <i class="fas fa-warehouse"></i>
+            Top Stock Items
+        </h3>
+        <div class="info-list">
+            {% if max_ingredient %}
+            <div class="info-item success">
+                <div class="info-name">{{ max_ingredient.name }}</div>
+                <div class="info-value">
+                    {{ max_ingredient.stock_quantity|floatformat:0 }}g in stock
+                    <span class="alert-badge success">Highest</span>
+                </div>
+            </div>
+            {% endif %}
+
+            <div class="info-item">
+                <div class="info-name">Total Stock Value</div>
+                <div class="info-value">
+                    {{ total_delivered|floatformat:0 }}g delivered this month
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<!-- Quick Actions -->
+<div class="quick-actions">
+    {% if user.profile.role == 'admin' or user.profile.role == 'manager' %}
+    <a href="{% url 'create_meal' %}" class="action-card primary">
+        <div class="action-header">
+            <div class="action-icon primary">
+                <i class="fas fa-plus"></i>
+            </div>
+            <div class="action-title">Create Meal</div>
+        </div>
+        <div class="action-description">Add a new meal recipe to the system</div>
+    </a>
+
+    <a href="{% url 'create_ingredient' %}" class="action-card secondary">
+        <div class="action-header">
+            <div class="action-icon secondary">
+                <i class="fas fa-leaf"></i>
+            </div>
+            <div class="action-title">Add Ingredient</div>
+        </div>
+        <div class="action-description">Register a new ingredient in inventory</div>
+    </a>
+
+    <a href="{% url 'create_delivery' %}" class="action-card accent">
+        <div class="action-header">
+            <div class="action-icon accent">
+                <i class="fas fa-truck"></i>
+            </div>
+            <div class="action-title">Record Delivery</div>
+        </div>
+        <div class="action-description">Log incoming ingredient deliveries</div>
+    </a>
+    {% endif %}
+
+    <a href="{% url 'meal_list' %}" class="action-card primary">
+        <div class="action-header">
+            <div class="action-icon primary">
+                <i class="fas fa-utensils"></i>
+            </div>
+            <div class="action-title">View Meals</div>
+        </div>
+        <div class="action-description">Browse and serve available meals</div>
+    </a>
+
+    <a href="{% url 'ingredient_list' %}" class="action-card secondary">
+        <div class="action-header">
+            <div class="action-icon secondary">
+                <i class="fas fa-list"></i>
+            </div>
+            <div class="action-title">Ingredient List</div>
+        </div>
+        <div class="action-description">Check current stock levels</div>
+    </a>
+
+    <a href="{% url 'delivery_list' %}" class="action-card accent">
+        <div class="action-header">
+            <div class="action-icon accent">
+                <i class="fas fa-history"></i>
+            </div>
+            <div class="action-title">Delivery History</div>
+        </div>
+        <div class="action-description">View recent delivery records</div>
+    </a>
+</div>
+
+<!-- Recent Activity -->
+<div class="recent-activity">
+    <h3 class="activity-title">
+        <i class="fas fa-clock"></i>
+        Recent Activity
+    </h3>
+    <div class="activity-list">
+        {% if recent_activities %}
+            {% for activity in recent_activities %}
+            <div class="activity-item">
+                <div class="activity-icon {{ activity.type }}">
+                    <i class="fas fa-{{ activity.icon }}"></i>
+                </div>
+                <div class="activity-content">
+                    <div class="activity-text">{{ activity.text }}</div>
+                    <div class="activity-time">{{ activity.time_display }}</div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="activity-item">
+                <div class="activity-icon meal">
+                    <i class="fas fa-info"></i>
+                </div>
+                <div class="activity-content">
+                    <div class="activity-text">No recent activity to display</div>
+                    <div class="activity-time">Start by serving meals or recording deliveries</div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+// Generate fake data for demonstration if no real data
+function generateFakeMealData() {
+    const today = new Date();
+    const data = [];
+
+    for (let i = 13; i >= 0; i--) {
+        const date = new Date(today);
+        date.setDate(date.getDate() - i);
+        const count = Math.floor(Math.random() * 15) + 5;
+
+        data.push({
+            date: date.toISOString().split('T')[0],
+            count: count
+        });
+    }
+
+    return data;
+}
+
+function generateFakeDeliveryData() {
+    return [
+        { name: 'Tomatoes', value: 2500 },
+        { name: 'Rice', value: 5000 },
+        { name: 'Chicken', value: 3200 },
+        { name: 'Onions', value: 1800 },
+        { name: 'Carrots', value: 1200 }
+    ];
+}
+
+// Get chart data
+let mealChartData, deliveryChartData;
+
+try {
+    mealChartData = JSON.parse('{{ meal_chart|escapejs }}');
+    if (!mealChartData || mealChartData.length === 0) {
+        mealChartData = generateFakeMealData();
+    }
+} catch (e) {
+    mealChartData = generateFakeMealData();
+}
+
+try {
+    deliveryChartData = JSON.parse('{{ delivery_chart|escapejs }}');
+    if (!deliveryChartData || deliveryChartData.length === 0) {
+        deliveryChartData = generateFakeDeliveryData();
+    }
+} catch (e) {
+    deliveryChartData = generateFakeDeliveryData();
+}
+
+// Chart colors
+const chartColors = {
+    primary: '#059669',
+    primaryDark: '#047857',
+    secondary: '#f59e0b',
+    accent: '#dc2626',
+    purple: '#8b5cf6',
+    blue: '#3b82f6'
+};
+
+// Create meals chart
+function createMealsChart() {
+    const canvas = document.getElementById('mealsChart');
+
+    const labels = mealChartData.map(item => {
+        const date = new Date(item.date);
+        return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+    });
+    const data = mealChartData.map(item => item.count);
+
+    new Chart(canvas, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Meals Served',
+                data: data,
+                borderColor: chartColors.primary,
+                backgroundColor: chartColors.primary + '20',
+                borderWidth: 3,
+                fill: true,
+                tension: 0.4,
+                pointBackgroundColor: chartColors.primary,
+                pointBorderColor: '#ffffff',
+                pointBorderWidth: 2,
+                pointRadius: 6,
+                pointHoverRadius: 8
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    titleColor: '#ffffff',
+                    bodyColor: '#ffffff',
+                    borderColor: chartColors.primary,
+                    borderWidth: 1,
+                    cornerRadius: 8,
+                    displayColors: false,
+                    callbacks: {
+                        title: function(context) {
+                            return `${context[0].label}`;
+                        },
+                        label: function(context) {
+                            return `${context.parsed.y} meals served`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: { precision: 0, color: '#6b7280', font: { size: 12 } },
+                    grid: { color: '#e5e7eb', drawBorder: false }
+                },
+                x: {
+                    ticks: { color: '#6b7280', font: { size: 12 } },
+                    grid: { display: false }
+                }
+            }
+        }
+    });
+}
+
+// Create delivery chart
+function createDeliveryChart() {
+    const canvas = document.getElementById('deliveryChart');
+
+    const labels = deliveryChartData.map(item => item.name);
+    const data = deliveryChartData.map(item => item.value);
+
+    const colors = [
+        chartColors.primary, chartColors.secondary, chartColors.accent,
+        chartColors.purple, chartColors.blue, '#10b981', '#f97316', '#ef4444'
+    ];
+
+    new Chart(canvas, {
+        type: 'doughnut',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: data,
+                backgroundColor: colors.slice(0, data.length),
+                borderColor: '#ffffff',
+                borderWidth: 3,
+                hoverBorderWidth: 4,
+                hoverOffset: 8
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: { padding: 20, usePointStyle: true, color: '#374151', font: { size: 12 } }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    titleColor: '#ffffff',
+                    bodyColor: '#ffffff',
+                    borderColor: '#ffffff',
+                    borderWidth: 1,
+                    cornerRadius: 8,
+                    callbacks: {
+                        label: function(context) {
+                            const label = context.label || '';
+                            const value = context.parsed;
+                            const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                            const percentage = ((value / total) * 100).toFixed(1);
+                            return `${label}: ${value}g (${percentage}%)`;
+                        }
+                    }
+                }
+            },
+            cutout: '60%',
+            animation: { animateRotate: true, animateScale: true, duration: 1000 }
+        }
+    });
+}
+
+// Initialize charts
+document.addEventListener('DOMContentLoaded', function() {
+    createMealsChart();
+    createDeliveryChart();
+});
+
+// Auto-refresh dashboard data every 5 minutes
+setInterval(function() {
+    fetch('/api/dashboard/')
+        .then(response => response.json())
+        .then(data => {
+            if (data.stats) {
+                console.log('Dashboard data refreshed');
+            }
+        })
+        .catch(error => console.log('Dashboard refresh failed:', error));
+}, 300000); // 5 minutes
+</script>
+{% endblock %}

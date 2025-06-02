@@ -1,0 +1,4 @@
+[2025-06-02 03:59:11] ERROR meal_serve - Failed to create MealServe record: MealServe() got unexpected keyword arguments: 'quantity'
+[2025-06-02 03:59:11] INFO meal_serve - admin served 3 portion(s) of Osh
+[2025-06-02 04:37:59] ERROR meal_serve - Failed to create MealServe record: MealServe() got unexpected keyword arguments: 'quantity'
+[2025-06-02 04:37:59] INFO meal_serve - admin served 2 portion(s) of Osh

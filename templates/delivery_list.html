@@ -1,0 +1,265 @@
+{% extends 'base.html' %}
+
+{% block title %}Delivery History - Meal & Inventory System{% endblock %}
+
+{% block extra_css %}
+<style>
+    .page-header {
+        margin-bottom: 2rem;
+    }
+
+    .page-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .header-actions {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 2rem;
+    }
+
+    .table-container {
+        background: var(--surface-color);
+        border-radius: 1rem;
+        box-shadow: var(--shadow-lg);
+        overflow: hidden;
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .table-header {
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        color: white;
+    }
+
+    .table-header th {
+        padding: 1.25rem 1.5rem;
+        text-align: left;
+        font-weight: 600;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .table-row {
+        border-bottom: 1px solid var(--border-color);
+        transition: all 0.2s;
+    }
+
+    .table-row:hover {
+        background-color: #f8fafc;
+    }
+
+    .table-row:last-child {
+        border-bottom: none;
+    }
+
+    .table-cell {
+        padding: 1.25rem 1.5rem;
+        color: var(--text-primary);
+    }
+
+    .ingredient-name {
+        font-weight: 600;
+        color: var(--primary-color);
+    }
+
+    .quantity-badge {
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        color: white;
+        padding: 0.375rem 0.75rem;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        font-size: 0.875rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+    }
+
+    .user-info {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .user-avatar {
+        width: 2rem;
+        height: 2rem;
+        background: linear-gradient(135deg, var(--secondary-color), #d97706);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: 600;
+        font-size: 0.875rem;
+    }
+
+    .date-info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .date-primary {
+        font-weight: 600;
+        color: var(--text-primary);
+    }
+
+    .date-secondary {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 4rem 2rem;
+        color: var(--text-secondary);
+    }
+
+    .empty-icon {
+        font-size: 4rem;
+        color: var(--border-color);
+        margin-bottom: 1.5rem;
+    }
+
+    .empty-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+    }
+
+    .empty-description {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    @media (max-width: 768px) {
+        .page-title {
+            font-size: 2rem;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }
+
+        .table-header th,
+        .table-cell {
+            padding: 1rem;
+        }
+
+        .user-info {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.25rem;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <h1 class="page-title">
+        <i class="fas fa-truck"></i>
+        Delivery History
+    </h1>
+</div>
+
+<div class="header-actions">
+    {% if user.profile.role == 'admin' or user.profile.role == 'manager' %}
+    <a href="{% url 'create_delivery' %}" class="btn btn-primary">
+        <i class="fas fa-plus"></i>
+        Record New Delivery
+    </a>
+    {% endif %}
+</div>
+
+{% if deliveries %}
+<div class="table-container">
+    <table class="table">
+        <thead class="table-header">
+            <tr>
+                <th>
+                    <i class="fas fa-leaf"></i>
+                    Ingredient
+                </th>
+                <th>
+                    <i class="fas fa-weight"></i>
+                    Quantity
+                </th>
+                <th>
+                    <i class="fas fa-user"></i>
+                    Delivered By
+                </th>
+                <th>
+                    <i class="fas fa-calendar"></i>
+                    Date & Time
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for delivery in deliveries %}
+            <tr class="table-row">
+                <td class="table-cell">
+                    <span class="ingredient-name">{{ delivery.ingredient.name }}</span>
+                </td>
+                <td class="table-cell">
+                    <span class="quantity-badge">
+                        <i class="fas fa-boxes"></i>
+                        {{ delivery.quantity }}g
+                    </span>
+                </td>
+                <td class="table-cell">
+                    <div class="user-info">
+                        <div class="user-avatar">
+                            {{ delivery.delivered_by.username|first|upper }}
+                        </div>
+                        <span>{{ delivery.delivered_by.username }}</span>
+                    </div>
+                </td>
+                <td class="table-cell">
+                    <div class="date-info">
+                        <span class="date-primary">{{ delivery.delivered_at|date:"M d, Y" }}</span>
+                        <span class="date-secondary">{{ delivery.delivered_at|date:"H:i" }}</span>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<div class="table-container">
+    <div class="empty-state">
+        <div class="empty-icon">
+            <i class="fas fa-truck"></i>
+        </div>
+        <h2 class="empty-title">No Deliveries Recorded</h2>
+        <p class="empty-description">Start tracking your ingredient deliveries to maintain accurate inventory levels.</p>
+        {% if user.profile.role == 'admin' or user.profile.role == 'manager' %}
+        <a href="{% url 'create_delivery' %}" class="btn btn-primary">
+            <i class="fas fa-plus"></i>
+            Record First Delivery
+        </a>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+
+<div class="mt-4">
+    <a href="{% url 'dashboard' %}" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i>
+        Back to Dashboard
+    </a>
+</div>
+{% endblock %}

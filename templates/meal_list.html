@@ -1,0 +1,466 @@
+{% extends 'base.html' %}
+
+{% block title %}Meals - Meal & Inventory System{% endblock %}
+
+{% block extra_css %}
+<style>
+    .page-header {
+        margin-bottom: 2rem;
+    }
+
+    .page-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .meals-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .meal-card {
+        background: var(--surface-color);
+        border-radius: 1rem;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+        transition: all 0.3s;
+        border: 2px solid transparent;
+        display: flex;
+        flex-direction: column;
+        min-height: 500px;
+    }
+
+    .meal-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+        border-color: var(--primary-color);
+    }
+
+    .meal-header {
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        color: white;
+        padding: 1.5rem;
+    }
+
+    .meal-name {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .meal-body {
+        padding: 1.5rem;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .ingredients-section {
+        flex: 1;
+        margin-bottom: 1.5rem;
+    }
+
+    .section-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .ingredients-table {
+        width: 100%;
+        border-collapse: collapse;
+        border-radius: 0.5rem;
+        overflow: hidden;
+        border: 1px solid var(--border-color);
+        font-size: 0.875rem;
+    }
+
+    .ingredients-table th {
+        background: #f8fafc;
+        padding: 0.75rem;
+        text-align: left;
+        font-weight: 600;
+        color: var(--text-primary);
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .ingredients-table td {
+        padding: 0.75rem;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .ingredients-table tr:last-child td {
+        border-bottom: none;
+    }
+
+    .ingredient-low-stock {
+        background-color: #fef2f2;
+        color: var(--accent-color);
+        font-weight: 600;
+    }
+
+    .view-all-btn {
+        color: var(--primary-color);
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-decoration: none;
+        margin-top: 0.5rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.25rem;
+        transition: all 0.2s;
+    }
+
+    .view-all-btn:hover {
+        color: var(--primary-dark);
+        text-decoration: none;
+    }
+
+    .portions-badge {
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 2rem;
+        font-weight: 600;
+        font-size: 0.875rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .meal-actions {
+        display: flex;
+        gap: 0.75rem;
+        flex-wrap: wrap;
+    }
+
+    .btn-small {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+        border-radius: 0.5rem;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375rem;
+        border: none;
+    }
+
+    .btn-edit {
+        background-color: var(--secondary-color);
+        color: white;
+    }
+
+    .btn-edit:hover {
+        background-color: #d97706;
+        transform: translateY(-1px);
+        text-decoration: none;
+        color: white;
+    }
+
+    .btn-delete {
+        background-color: var(--accent-color);
+        color: white;
+    }
+
+    .btn-delete:hover {
+        background-color: #b91c1c;
+        transform: translateY(-1px);
+        text-decoration: none;
+        color: white;
+    }
+
+    .btn-serve {
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        color: white;
+    }
+
+    .btn-serve:hover {
+        transform: translateY(-1px);
+        box-shadow: var(--shadow);
+        text-decoration: none;
+        color: white;
+    }
+
+    .btn-disabled {
+        background-color: #9ca3af;
+        color: white;
+        cursor: not-allowed;
+    }
+
+    .btn-disabled:hover {
+        transform: none;
+        background-color: #9ca3af;
+    }
+
+    .modal {
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+    }
+
+    .modal.hidden {
+        display: none;
+    }
+
+    .modal-content {
+        background: var(--surface-color);
+        border-radius: 1rem;
+        box-shadow: var(--shadow-lg);
+        max-width: 500px;
+        width: 100%;
+        max-height: 80vh;
+        overflow-y: auto;
+    }
+
+    .modal-header {
+        padding: 1.5rem;
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .modal-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--text-primary);
+    }
+
+    .modal-close {
+        background: none;
+        border: none;
+        font-size: 1.5rem;
+        color: var(--text-secondary);
+        cursor: pointer;
+        padding: 0.25rem;
+        border-radius: 0.25rem;
+        transition: all 0.2s;
+    }
+
+    .modal-close:hover {
+        color: var(--accent-color);
+        background-color: #fef2f2;
+    }
+
+    .modal-body {
+        padding: 1.5rem;
+    }
+
+    .empty-state {
+        text-align: center;
+        padding: 4rem 2rem;
+        color: var(--text-secondary);
+    }
+
+    .empty-icon {
+        font-size: 4rem;
+        color: var(--border-color);
+        margin-bottom: 1.5rem;
+    }
+
+    .empty-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary);
+    }
+
+    .empty-description {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    @media (max-width: 768px) {
+        .page-title {
+            font-size: 2rem;
+        }
+
+        .meals-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .meal-actions {
+            flex-direction: column;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="page-header flex justify-between items-center">
+    <h1 class="page-title">
+        <i class="fas fa-utensils"></i>
+        Meal Management
+    </h1>
+    {% if user.profile.role == 'admin' or user.profile.role == 'manager' %}
+    <a href="{% url 'create_meal' %}" class="btn btn-primary">
+        <i class="fas fa-plus"></i>
+        Create New Meal
+    </a>
+    {% endif %}
+</div>
+
+{% if meals %}
+<div class="meals-grid">
+    {% for meal in meals %}
+    <article class="meal-card">
+        <div class="meal-header">
+            <h2 class="meal-name">
+                <i class="fas fa-utensils"></i>
+                {{ meal.name }}
+            </h2>
+        </div>
+
+        <div class="meal-body">
+            <div class="ingredients-section">
+                <h3 class="section-title">
+                    <i class="fas fa-leaf"></i>
+                    Ingredients
+                </h3>
+
+                <table class="ingredients-table">
+                    <thead>
+                        <tr>
+                            <th>Ingredient</th>
+                            <th>Required (g)</th>
+                            <th>Stock (g)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for mi in meal.total_ingredients|slice:":3" %}
+                        <tr {% if mi.ingredient.stock_quantity < mi.quantity %}class="ingredient-low-stock"{% endif %}>
+                            <td>{{ mi.ingredient.name }}</td>
+                            <td>{{ mi.quantity }}</td>
+                            <td>{{ mi.ingredient.stock_quantity }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+                {% if meal.total_ingredients|length > 3 %}
+                <button
+                    type="button"
+                    onclick="document.getElementById('modal-{{ meal.id }}').classList.remove('hidden')"
+                    class="view-all-btn"
+                >
+                    <i class="fas fa-eye"></i>
+                    View all {{ meal.total_ingredients|length }} ingredients
+                </button>
+                {% endif %}
+            </div>
+
+            <div class="portions-badge">
+                <i class="fas fa-users"></i>
+                Max Portions: {{ meal.get_max_portions }}
+            </div>
+
+            <div class="meal-actions">
+                {% if user.profile.role == 'admin' or user.profile.role == 'manager' %}
+                <a href="{% url 'update_meal' meal.id %}" class="btn-small btn-edit">
+                    <i class="fas fa-edit"></i>
+                    Edit
+                </a>
+                <a href="{% url 'delete_meal' meal.id %}" class="btn-small btn-delete">
+                    <i class="fas fa-trash"></i>
+                    Delete
+                </a>
+                {% endif %}
+                {% if meal.get_max_portions > 0 %}
+                <a href="{% url 'serve_meal' meal.id %}" class="btn-small btn-serve">
+                    <i class="fas fa-utensils"></i>
+                    Serve
+                </a>
+                {% else %}
+                <span class="btn-small btn-disabled">
+                    <i class="fas fa-ban"></i>
+                    Cannot Serve
+                </span>
+                {% endif %}
+            </div>
+        </div>
+    </article>
+
+    <!-- Modal for all ingredients -->
+    <div id="modal-{{ meal.id }}" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">{{ meal.name }} - All Ingredients</h3>
+                <button
+                    onclick="document.getElementById('modal-{{ meal.id }}').classList.add('hidden')"
+                    class="modal-close"
+                >
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="ingredients-table">
+                    <thead>
+                        <tr>
+                            <th>Ingredient</th>
+                            <th>Required (g)</th>
+                            <th>Stock (g)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for mi in meal.total_ingredients %}
+                        <tr {% if mi.ingredient.stock_quantity < mi.quantity %}class="ingredient-low-stock"{% endif %}>
+                            <td>{{ mi.ingredient.name }}</td>
+                            <td>{{ mi.quantity }}</td>
+                            <td>{{ mi.ingredient.stock_quantity }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<div class="empty-state">
+    <div class="empty-icon">
+        <i class="fas fa-utensils"></i>
+    </div>
+    <h2 class="empty-title">No Meals Available</h2>
+    <p class="empty-description">Start creating delicious meals for your inventory system.</p>
+    {% if user.profile.role == 'admin' or user.profile.role == 'manager' %}
+    <a href="{% url 'create_meal' %}" class="btn btn-primary">
+        <i class="fas fa-plus"></i>
+        Create Your First Meal
+    </a>
+    {% endif %}
+</div>
+{% endif %}
+
+<div class="mt-4">
+    <a href="{% url 'dashboard' %}" class="btn btn-secondary">
+        <i class="fas fa-arrow-left"></i>
+        Back to Dashboard
+    </a>
+</div>
+{% endblock %}

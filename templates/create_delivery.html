@@ -1,0 +1,377 @@
+{% extends 'base.html' %}
+
+{% block title %}Record Delivery - Meal & Inventory System{% endblock %}
+
+{% block extra_css %}
+<style>
+    .form-card {
+        max-width: 800px;
+        margin: 0 auto;
+        background: var(--surface-color);
+        border-radius: 1rem;
+        box-shadow: var(--shadow-lg);
+        overflow: hidden;
+    }
+
+    .form-header {
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        color: white;
+        padding: 2rem;
+    }
+
+    .form-title {
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .form-subtitle {
+        opacity: 0.9;
+        font-size: 1rem;
+    }
+
+    .form-body {
+        padding: 2rem;
+    }
+
+    .ingredients-section {
+        margin-bottom: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .ingredient-row {
+        background: #f8fafc;
+        border: 2px solid var(--border-color);
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        transition: all 0.2s;
+    }
+
+    .ingredient-row:hover {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+    }
+
+    .ingredient-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr auto;
+        gap: 1rem;
+        align-items: end;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-label {
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .form-input, .form-select {
+        padding: 0.75rem 1rem;
+        border: 2px solid var(--border-color);
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        transition: all 0.2s;
+        background-color: white;
+    }
+
+    .form-input:focus, .form-select:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+    }
+
+    .remove-btn {
+        background-color: var(--accent-color);
+        color: white;
+        border: none;
+        border-radius: 0.5rem;
+        padding: 0.75rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+    }
+
+    .remove-btn:hover {
+        background-color: #b91c1c;
+        transform: scale(1.05);
+    }
+
+    .add-ingredient-btn {
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        color: white;
+        border: none;
+        border-radius: 0.75rem;
+        padding: 1rem 1.5rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+    }
+
+    .add-ingredient-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .form-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border-color);
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.875rem 1.75rem;
+        border: none;
+        border-radius: 0.75rem;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-size: 0.875rem;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        color: white;
+        box-shadow: var(--shadow);
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+        text-decoration: none;
+        color: white;
+    }
+
+    .btn-secondary {
+        background-color: #f3f4f6;
+        color: var(--text-primary);
+        border: 2px solid var(--border-color);
+    }
+
+    .btn-secondary:hover {
+        background-color: #e5e7eb;
+        border-color: var(--text-secondary);
+        text-decoration: none;
+        color: var(--text-primary);
+    }
+
+    @media (max-width: 768px) {
+        .form-header {
+            padding: 1.5rem;
+        }
+
+        .form-title {
+            font-size: 1.5rem;
+        }
+
+        .form-body {
+            padding: 1.5rem;
+        }
+
+        .ingredient-grid {
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .form-actions {
+            flex-direction: column;
+            align-items: stretch;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="form-card">
+    <div class="form-header">
+        <h1 class="form-title">
+            <i class="fas fa-truck"></i>
+            📦 Record Ingredient Delivery
+        </h1>
+        <p class="form-subtitle">Add new ingredients to your inventory</p>
+    </div>
+
+    <div class="form-body">
+        <form method="post" novalidate>
+            {% csrf_token %}
+
+            <div class="ingredients-section">
+                <h2 class="section-title">
+                    <i class="fas fa-boxes"></i>
+                    Delivered Ingredients
+                </h2>
+                
+                <div id="ingredient-formset">
+                    <div class="ingredient-row">
+                        <div class="ingredient-grid">
+                            <div class="form-group">
+                                <label for="ingredient_0" class="form-label">Ingredient</label>
+                                <select name="ingredient_0" id="ingredient_0" class="form-select" required>
+                                    <option value="" selected disabled>Select ingredient</option>
+                                    {% for ingredient in ingredients %}
+                                        <option value="{{ ingredient.id }}">{{ ingredient.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="quantity_0" class="form-label">Quantity (g)</label>
+                                <input type="number" name="quantity_0" id="quantity_0" class="form-input" step="0.01" min="0.01" required>
+                            </div>
+                            <div class="form-group">
+                                <button type="button" class="remove-btn" onclick="removeIngredient(this)" style="display: none;">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <input type="hidden" name="form-TOTAL_FORMS" id="total-forms" value="1" />
+
+                <button type="button" id="add-ingredient-btn" class="add-ingredient-btn">
+                    <i class="fas fa-plus"></i>
+                    Add More Ingredients
+                </button>
+            </div>
+
+            <div class="form-actions">
+                <a href="{% url 'delivery_list' %}" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i>
+                    Cancel
+                </a>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-check"></i>
+                    Submit Delivery
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        let formIndex = 1;
+        const formset = document.getElementById('ingredient-formset');
+        const totalFormsInput = document.getElementById('total-forms');
+        const addBtn = document.getElementById('add-ingredient-btn');
+
+        const ingredientOptions = `
+            {% for ingredient in ingredients %}
+                <option value="{{ ingredient.id }}">{{ ingredient.name|escapejs }}</option>
+            {% endfor %}
+        `;
+
+        addBtn.addEventListener('click', () => {
+            const group = document.createElement('div');
+            group.className = 'ingredient-row';
+
+            group.innerHTML = `
+                <div class="ingredient-grid">
+                    <div class="form-group">
+                        <label for="ingredient_${formIndex}" class="form-label">Ingredient</label>
+                        <select name="ingredient_${formIndex}" id="ingredient_${formIndex}" class="form-select" required>
+                            <option value="" selected disabled>Select ingredient</option>
+                            ${ingredientOptions}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity_${formIndex}" class="form-label">Quantity (g)</label>
+                        <input type="number" name="quantity_${formIndex}" id="quantity_${formIndex}" class="form-input" step="0.01" min="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="remove-btn" onclick="removeIngredient(this)">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            formset.appendChild(group);
+            formIndex++;
+            updateTotalForms();
+            updateRemoveButtons();
+        });
+
+        function updateTotalForms() {
+            totalFormsInput.value = formset.querySelectorAll('.ingredient-row').length;
+        }
+
+        function updateRemoveButtons() {
+            const rows = formset.querySelectorAll('.ingredient-row');
+            rows.forEach((row, index) => {
+                const removeBtn = row.querySelector('.remove-btn');
+                if (rows.length > 1) {
+                    removeBtn.style.display = 'flex';
+                } else {
+                    removeBtn.style.display = 'none';
+                }
+            });
+        }
+
+        window.removeIngredient = function(button) {
+            button.closest('.ingredient-row').remove();
+            updateTotalForms();
+            updateRemoveButtons();
+        };
+
+        // Initialize
+        updateRemoveButtons();
+    });
+
+    // Duplicate Ingredient Check
+    document.addEventListener('change', function (e) {
+        if (e.target.matches('select[name^="ingredient_"]')) {
+            const selects = document.querySelectorAll('select[name^="ingredient_"]');
+            const selectedValues = [];
+
+            selects.forEach((select) => {
+                const value = select.value;
+                if (value && selectedValues.includes(value)) {
+                    alert('This ingredient is already selected. Please choose a different one.');
+                    select.value = '';
+                } else if (value) {
+                    selectedValues.push(value);
+                }
+            });
+        }
+    });
+</script>
+{% endblock %}

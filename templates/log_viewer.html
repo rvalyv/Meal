@@ -1,0 +1,407 @@
+{% extends 'base.html' %}
+
+{% block title %}System Logs - Meal & Inventory System{% endblock %}
+
+{% block extra_css %}
+<style>
+    .logs-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+
+    .logs-header {
+        margin-bottom: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .logs-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .logs-stats {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .stat-badge {
+        background: var(--surface-color);
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        box-shadow: var(--shadow);
+        font-size: 0.875rem;
+        font-weight: 600;
+    }
+
+    .stat-badge.info {
+        border-left: 4px solid #3b82f6;
+    }
+
+    .stat-badge.warning {
+        border-left: 4px solid var(--secondary-color);
+    }
+
+    .stat-badge.error {
+        border-left: 4px solid var(--accent-color);
+    }
+
+    .log-filters {
+        background: var(--surface-color);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        box-shadow: var(--shadow);
+        margin-bottom: 2rem;
+    }
+
+    .filters-form {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        align-items: end;
+    }
+
+    .filter-group {
+        flex: 1;
+        min-width: 150px;
+    }
+
+    .filter-label {
+        display: block;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+        font-size: 0.875rem;
+    }
+
+    .filter-select {
+        width: 100%;
+        padding: 0.75rem;
+        border: 2px solid var(--border-color);
+        border-radius: 0.5rem;
+        font-size: 1rem;
+        transition: all 0.2s;
+    }
+
+    .filter-select:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+    }
+
+    .filter-btn {
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        color: white;
+        border: none;
+        border-radius: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s;
+        height: fit-content;
+    }
+
+    .filter-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .logs-content {
+        background: var(--surface-color);
+        border-radius: 1rem;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+    }
+
+    .logs-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .logs-table th {
+        background: #f8fafc;
+        padding: 1rem;
+        text-align: left;
+        font-weight: 600;
+        color: var(--text-primary);
+        border-bottom: 1px solid var(--border-color);
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .logs-table td {
+        padding: 1rem;
+        border-bottom: 1px solid var(--border-color);
+        vertical-align: top;
+    }
+
+    .logs-table tr:hover {
+        background-color: #f8fafc;
+    }
+
+    .log-timestamp {
+        font-family: 'Courier New', monospace;
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        white-space: nowrap;
+    }
+
+    .log-level {
+        display: inline-block;
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+
+    .log-level.info {
+        background: #dbeafe;
+        color: #1e40af;
+    }
+
+    .log-level.warning {
+        background: #fef3c7;
+        color: #92400e;
+    }
+
+    .log-level.error {
+        background: #fecaca;
+        color: #991b1b;
+    }
+
+    .log-source {
+        background: #f3f4f6;
+        color: var(--text-secondary);
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.25rem;
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+
+    .log-message {
+        font-family: 'Courier New', monospace;
+        font-size: 0.875rem;
+        line-height: 1.4;
+        max-width: 400px;
+        word-break: break-word;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 2rem;
+    }
+
+    .pagination a,
+    .pagination span {
+        padding: 0.5rem 1rem;
+        border-radius: 0.5rem;
+        text-decoration: none;
+        color: var(--text-primary);
+        border: 1px solid var(--border-color);
+        transition: all 0.2s;
+    }
+
+    .pagination a:hover {
+        background-color: var(--primary-color);
+        color: white;
+        text-decoration: none;
+    }
+
+    .pagination .current {
+        background-color: var(--primary-color);
+        color: white;
+        border-color: var(--primary-color);
+    }
+
+    .empty-logs {
+        text-align: center;
+        padding: 4rem 2rem;
+        color: var(--text-secondary);
+    }
+
+    .empty-icon {
+        font-size: 4rem;
+        color: var(--border-color);
+        margin-bottom: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+        .logs-title {
+            font-size: 2rem;
+        }
+
+        .logs-header {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .filters-form {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        .filter-group {
+            min-width: auto;
+        }
+
+        .logs-table {
+            font-size: 0.875rem;
+        }
+
+        .logs-table th,
+        .logs-table td {
+            padding: 0.75rem 0.5rem;
+        }
+
+        .log-message {
+            max-width: 200px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="logs-container">
+    <div class="logs-header">
+        <div>
+            <h1 class="logs-title">
+                <i class="fas fa-file-alt"></i>
+                System Logs
+            </h1>
+            <p class="text-secondary">Monitor system activities and events</p>
+        </div>
+
+        <div class="logs-stats">
+            <div class="stat-badge info">
+                <i class="fas fa-info-circle"></i>
+                Info: {{ stats.info }}
+            </div>
+            <div class="stat-badge warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                Warning: {{ stats.warning }}
+            </div>
+            <div class="stat-badge error">
+                <i class="fas fa-exclamation-circle"></i>
+                Error: {{ stats.error }}
+            </div>
+        </div>
+    </div>
+
+    <div class="log-filters">
+        <form method="get" class="filters-form">
+            <div class="filter-group">
+                <label class="filter-label">Log Type</label>
+                <select name="type" class="filter-select">
+                    <option value="all" {% if log_type == 'all' %}selected{% endif %}>All Logs</option>
+                    <option value="meal_serve" {% if log_type == 'meal_serve' %}selected{% endif %}>Meal Serving</option>
+                    <option value="delivery" {% if log_type == 'delivery' %}selected{% endif %}>Deliveries</option>
+                    <option value="ingredient" {% if log_type == 'ingredient' %}selected{% endif %}>Ingredients</option>
+                    <option value="user_activity" {% if log_type == 'user_activity' %}selected{% endif %}>User Activity</option>
+                    <option value="security" {% if log_type == 'security' %}selected{% endif %}>Security</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label">Log Level</label>
+                <select name="level" class="filter-select">
+                    <option value="all" {% if log_level == 'all' %}selected{% endif %}>All Levels</option>
+                    <option value="info" {% if log_level == 'info' %}selected{% endif %}>Info</option>
+                    <option value="warning" {% if log_level == 'warning' %}selected{% endif %}>Warning</option>
+                    <option value="error" {% if log_level == 'error' %}selected{% endif %}>Error</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label class="filter-label">Date Range</label>
+                <select name="date" class="filter-select">
+                    <option value="today" {% if date_range == 'today' %}selected{% endif %}>Today</option>
+                    <option value="week" {% if date_range == 'week' %}selected{% endif %}>This Week</option>
+                    <option value="month" {% if date_range == 'month' %}selected{% endif %}>This Month</option>
+                    <option value="all" {% if date_range == 'all' %}selected{% endif %}>All Time</option>
+                </select>
+            </div>
+
+            <button type="submit" class="filter-btn">
+                <i class="fas fa-filter"></i>
+                Filter
+            </button>
+        </form>
+    </div>
+
+    <div class="logs-content">
+        {% if logs %}
+        <table class="logs-table">
+            <thead>
+                <tr>
+                    <th>Timestamp</th>
+                    <th>Level</th>
+                    <th>Source</th>
+                    <th>Message</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for log in logs %}
+                <tr>
+                    <td class="log-timestamp">
+                        {{ log.timestamp|date:"Y-m-d H:i:s" }}
+                    </td>
+                    <td>
+                        <span class="log-level {{ log.level }}">{{ log.level }}</span>
+                    </td>
+                    <td>
+                        <span class="log-source">{{ log.source }}</span>
+                    </td>
+                    <td class="log-message">
+                        {{ log.message }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Pagination -->
+        {% if logs.has_other_pages %}
+        <div class="pagination">
+            {% if logs.has_previous %}
+                <a href="?page=1&type={{ log_type }}&level={{ log_level }}&date={{ date_range }}">&laquo; First</a>
+                <a href="?page={{ logs.previous_page_number }}&type={{ log_type }}&level={{ log_level }}&date={{ date_range }}">Previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ logs.number }} of {{ logs.paginator.num_pages }}
+            </span>
+
+            {% if logs.has_next %}
+                <a href="?page={{ logs.next_page_number }}&type={{ log_type }}&level={{ log_level }}&date={{ date_range }}">Next</a>
+                <a href="?page={{ logs.paginator.num_pages }}&type={{ log_type }}&level={{ log_level }}&date={{ date_range }}">Last &raquo;</a>
+            {% endif %}
+        </div>
+        {% endif %}
+
+        {% else %}
+        <div class="empty-logs">
+            <div class="empty-icon">
+                <i class="fas fa-file-alt"></i>
+            </div>
+            <h3>No Logs Found</h3>
+            <p>No log entries match your current filters.</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

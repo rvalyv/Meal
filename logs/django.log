@@ -1,0 +1,747 @@
+[2025-06-02 03:01:11] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-06-02 03:04:04] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 22625
+[2025-06-02 03:04:04] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 22625
+[2025-06-02 03:04:04] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 22625
+[2025-06-02 03:04:04] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 22625
+[2025-06-02 03:04:05] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 22625
+[2025-06-02 03:06:52] INFO django.utils.autoreload - D:\D\new\simple\mine\urls.py changed, reloading.
+[2025-06-02 03:06:53] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-06-02 03:07:23] INFO django.utils.autoreload - D:\D\new\simple\mine\urls.py changed, reloading.
+[2025-06-02 03:07:23] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-06-02 03:07:41] INFO django.utils.autoreload - D:\D\new\simple\mine\urls.py changed, reloading.
+[2025-06-02 03:07:41] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-06-02 03:07:52] INFO django.utils.autoreload - D:\D\new\simple\mine\urls.py changed, reloading.
+[2025-06-02 03:07:53] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-06-02 03:08:18] INFO django.utils.autoreload - D:\D\new\simple\mine\views.py changed, reloading.
+[2025-06-02 03:08:19] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-06-02 03:09:08] INFO django.utils.autoreload - D:\D\new\simple\mine\views.py changed, reloading.
+[2025-06-02 03:09:08] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-06-02 03:09:21] INFO django.utils.autoreload - D:\D\new\simple\mine\views.py changed, reloading.
+[2025-06-02 03:09:21] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-06-02 03:09:41] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 27749
+[2025-06-02 03:09:54] INFO django.server - "GET /deliveries/create/ HTTP/1.1" 200 28085
+[2025-06-02 03:09:57] INFO django.server - "GET /deliveries/ HTTP/1.1" 200 26323
+[2025-06-02 03:09:58] INFO django.server - "GET /logs/ HTTP/1.1" 200 36955
+[2025-06-02 03:10:27] INFO django.server - "GET /logs/?type=meal_serve&level=all&date=today HTTP/1.1" 200 23645
+[2025-06-02 03:10:30] INFO django.server - "GET /logs/?type=all&level=all&date=today HTTP/1.1" 200 39186
+[2025-06-02 03:10:32] INFO django.server - "GET /deliveries/create/ HTTP/1.1" 200 28085
+[2025-06-02 03:10:37] INFO django.server - "POST /deliveries/create/ HTTP/1.1" 302 0
+[2025-06-02 03:10:37] INFO django.server - "GET /ingredients/ HTTP/1.1" 200 34226
+[2025-06-02 03:10:39] INFO django.server - "GET /logs/ HTTP/1.1" 200 42516
+[2025-06-02 03:10:45] INFO django.server - "GET /logs/?type=delivery&level=all&date=today HTTP/1.1" 200 24313
+[2025-06-02 03:10:48] INFO django.server - "GET /logs/?type=all&level=all&date=today HTTP/1.1" 200 44745
+[2025-06-02 03:10:54] INFO django.server - "GET /users/profile/ HTTP/1.1" 200 21409
+[2025-06-02 03:10:56] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 28211
+[2025-06-02 03:10:57] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 28211
+[2025-06-02 03:11:25] INFO django.server - "GET /logs/ HTTP/1.1" 200 47527
+[2025-06-02 03:11:31] INFO django.server - "GET /logs/?type=delivery&level=all&date=today HTTP/1.1" 200 24313
+[2025-06-02 03:11:34] INFO django.server - "GET /logs/?type=all&level=all&date=today HTTP/1.1" 200 49756
+[2025-06-02 03:11:38] INFO django.server - "GET /users/users/ HTTP/1.1" 200 30121
+[2025-06-02 03:11:41] INFO django.server - "GET /users/register/ HTTP/1.1" 200 21690
+[2025-06-02 03:11:43] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 28211
+[2025-06-02 03:11:46] INFO django.server - "GET /meals/ HTTP/1.1" 200 38910
+[2025-06-02 03:11:49] INFO django.server - "GET /ingredients/ HTTP/1.1" 200 34226
+[2025-06-02 03:11:56] INFO django.server - "GET /deliveries/create/ HTTP/1.1" 200 28085
+[2025-06-02 03:11:57] INFO django.server - "GET /deliveries/ HTTP/1.1" 200 27296
+[2025-06-02 03:12:00] INFO django.server - "GET /deliveries/ HTTP/1.1" 200 27296
+[2025-06-02 03:12:03] INFO django.server - "GET /ingredients/ HTTP/1.1" 200 34226
+[2025-06-02 03:12:12] INFO django.server - "GET /ingredients/?q=banan HTTP/1.1" 200 23312
+[2025-06-02 03:12:13] INFO django.server - "GET /ingredients/?q= HTTP/1.1" 200 34226
+[2025-06-02 03:12:22] ERROR django.request - Internal Server Error: /ingredients/update/1/
+Traceback (most recent call last):
+  File "D:\D\new\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\simple\mine\views.py", line 207, in update_ingredient
+    return render(request, 'update_ingredient.html', {
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 489, in parse
+    raise self.error(token, e)
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 487, in parse
+    filter_expression = self.compile_filter(token.contents)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 609, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 705, in __init__
+    filter_func = parser.find_filter(filter_name)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 615, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Invalid filter: 'add_class'
+[2025-06-02 03:12:22] ERROR django.server - "GET /ingredients/update/1/ HTTP/1.1" 500 224538
+[2025-06-02 03:12:27] INFO django.server - "GET /ingredients/delete/2/ HTTP/1.1" 200 20103
+[2025-06-02 03:12:30] INFO django.server - "GET /ingredients/ HTTP/1.1" 200 34226
+[2025-06-02 03:12:35] INFO django.server - "GET /ingredients/delete/13/ HTTP/1.1" 200 20101
+[2025-06-02 03:12:36] INFO django.server - "POST /ingredients/delete/13/ HTTP/1.1" 302 0
+[2025-06-02 03:12:36] INFO django.server - "GET /ingredients/ HTTP/1.1" 200 33249
+[2025-06-02 03:12:41] INFO django.server - "GET /meals/ HTTP/1.1" 200 38910
+[2025-06-02 03:12:42] INFO django.server - "GET /meals/2/edit/ HTTP/1.1" 200 39125
+[2025-06-02 03:12:45] INFO django.server - "GET /meals/ HTTP/1.1" 200 38910
+[2025-06-02 03:12:46] INFO django.server - "GET /meals/2/delete/ HTTP/1.1" 200 20074
+[2025-06-02 03:12:47] INFO django.server - "GET /meals/ HTTP/1.1" 200 38910
+[2025-06-02 03:12:48] INFO django.server - "GET /meals/serve/2/ HTTP/1.1" 200 20829
+[2025-06-02 03:12:49] INFO django.server - "GET /meals/ HTTP/1.1" 200 38910
+[2025-06-02 03:12:53] INFO django.server - "GET /deliveries/ HTTP/1.1" 200 27296
+[2025-06-02 03:12:54] INFO django.server - "GET /deliveries/create/ HTTP/1.1" 200 27913
+[2025-06-02 03:12:58] INFO django.server - "GET /deliveries/ HTTP/1.1" 200 27296
+[2025-06-02 03:12:59] INFO django.server - "GET /logs/ HTTP/1.1" 200 51823
+[2025-06-02 03:13:02] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 28211
+[2025-06-02 03:13:09] INFO django.server - "GET /logs/ HTTP/1.1" 200 51777
+[2025-06-02 03:13:12] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 28211
+[2025-06-02 03:13:15] INFO django.server - "GET /ingredients/ HTTP/1.1" 200 33249
+[2025-06-02 03:13:18] ERROR django.request - Internal Server Error: /ingredients/update/1/
+Traceback (most recent call last):
+  File "D:\D\new\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\simple\mine\views.py", line 207, in update_ingredient
+    return render(request, 'update_ingredient.html', {
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 489, in parse
+    raise self.error(token, e)
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 487, in parse
+    filter_expression = self.compile_filter(token.contents)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 609, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 705, in __init__
+    filter_func = parser.find_filter(filter_name)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 615, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Invalid filter: 'add_class'
+[2025-06-02 03:13:18] ERROR django.server - "GET /ingredients/update/1/ HTTP/1.1" 500 224535
+[2025-06-02 03:14:23] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-06-02 03:14:24] INFO django.server - "GET /ingredients/update/1/ HTTP/1.1" 200 20156
+[2025-06-02 03:14:27] INFO django.server - "GET /ingredients/ HTTP/1.1" 200 33249
+[2025-06-02 03:14:27] INFO django.server - "GET /ingredients/update/1/ HTTP/1.1" 200 20156
+[2025-06-02 03:14:29] INFO django.server - "GET /ingredients/ HTTP/1.1" 200 33249
+[2025-06-02 03:14:31] INFO django.server - "GET /ingredients/update/1/ HTTP/1.1" 200 20156
+[2025-06-02 03:14:32] INFO django.server - "GET /ingredients/ HTTP/1.1" 200 33249
+[2025-06-02 03:14:38] INFO django.server - "GET /ingredients/update/12/ HTTP/1.1" 200 20156
+[2025-06-02 03:14:42] INFO django.server - "POST /ingredients/update/12/ HTTP/1.1" 302 0
+[2025-06-02 03:14:42] INFO django.server - "GET /ingredients/ HTTP/1.1" 200 33249
+[2025-06-02 03:14:44] INFO django.server - "GET /logs/ HTTP/1.1" 200 51750
+[2025-06-02 03:14:51] INFO django.server - "GET /logs/?type=ingredient&level=all&date=today HTTP/1.1" 200 23645
+[2025-06-02 03:14:53] INFO django.server - "GET /logs/?type=all&level=all&date=today HTTP/1.1" 200 51745
+[2025-06-02 03:15:20] INFO django.server - "GET /logs/?type=delivery&level=all&date=today HTTP/1.1" 200 24313
+[2025-06-02 03:15:22] INFO django.server - "GET /logs/?type=ingredient&level=all&date=today HTTP/1.1" 200 23645
+[2025-06-02 03:15:24] INFO django.server - "GET /logs/?type=meal_serve&level=all&date=today HTTP/1.1" 200 23645
+[2025-06-02 03:15:26] INFO django.server - "GET /logs/?type=user_activity&level=all&date=today HTTP/1.1" 200 33659
+[2025-06-02 03:15:30] INFO django.server - "GET /logs/?type=security&level=all&date=today HTTP/1.1" 200 23645
+[2025-06-02 03:15:33] INFO django.server - "GET /logs/?type=all&level=all&date=today HTTP/1.1" 200 51927
+[2025-06-02 03:15:34] INFO django.server - "GET /logs/?type=all&level=info&date=today HTTP/1.1" 200 51947
+[2025-06-02 03:15:36] INFO django.server - "GET /logs/?type=all&level=warning&date=today HTTP/1.1" 200 23645
+[2025-06-02 03:15:38] INFO django.server - "GET /logs/?type=all&level=error&date=today HTTP/1.1" 200 26002
+[2025-06-02 03:15:40] INFO django.server - "GET /logs/?type=all&level=all&date=today HTTP/1.1" 200 52041
+[2025-06-02 03:15:41] INFO django.server - "GET /logs/?type=all&level=all&date=week HTTP/1.1" 200 52072
+[2025-06-02 03:15:42] INFO django.server - "GET /logs/?type=all&level=all&date=month HTTP/1.1" 200 52109
+[2025-06-02 03:15:44] INFO django.server - "GET /logs/?type=all&level=all&date=today HTTP/1.1" 200 52133
+[2025-06-02 03:15:46] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 28211
+[2025-06-02 03:15:47] INFO django.server - "GET /logs/ HTTP/1.1" 200 52171
+[2025-06-02 03:15:50] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 28211
+[2025-06-02 03:15:59] INFO django.server - "GET /users/users/ HTTP/1.1" 200 30121
+[2025-06-02 03:16:02] INFO django.server - "GET /users/users/?q=&role=manager HTTP/1.1" 200 25314
+[2025-06-02 03:16:05] INFO django.server - "GET /users/users/?q=&role= HTTP/1.1" 200 30121
+[2025-06-02 03:16:07] INFO django.server - "GET /users/users/2/edit/ HTTP/1.1" 200 20534
+[2025-06-02 03:16:09] INFO django.server - "GET /users/users/ HTTP/1.1" 200 30121
+[2025-06-02 03:16:10] INFO django.server - "GET /ingredients/ HTTP/1.1" 200 33249
+[2025-06-02 03:16:13] INFO django.server - "GET /deliveries/ HTTP/1.1" 200 27296
+[2025-06-02 03:16:14] INFO django.server - "GET /users/users/ HTTP/1.1" 200 30121
+[2025-06-02 03:16:15] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 28211
+[2025-06-02 03:16:17] INFO django.server - "GET /users/logout/ HTTP/1.1" 302 0
+[2025-06-02 03:16:17] INFO django.server - "GET /users/login/ HTTP/1.1" 200 18025
+[2025-06-02 03:16:22] INFO django.server - "POST /users/login/ HTTP/1.1" 302 0
+[2025-06-02 03:16:22] INFO django.server - "GET /users/profile/ HTTP/1.1" 200 21696
+[2025-06-02 03:17:31] INFO django.utils.autoreload - D:\D\new\simple\users\views.py changed, reloading.
+[2025-06-02 03:17:31] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-06-02 03:17:33] INFO django.server - "GET /users/profile/ HTTP/1.1" 200 21409
+[2025-06-02 03:17:33] INFO django.server - "GET /users/profile/ HTTP/1.1" 200 21409
+[2025-06-02 03:17:34] INFO django.server - "GET /users/profile/ HTTP/1.1" 200 21409
+[2025-06-02 03:17:35] INFO django.server - "GET /users/logout/ HTTP/1.1" 302 0
+[2025-06-02 03:17:35] INFO django.server - "GET /users/login/ HTTP/1.1" 200 18025
+[2025-06-02 03:17:39] INFO django.server - "POST /users/login/ HTTP/1.1" 302 0
+[2025-06-02 03:17:39] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 28498
+[2025-06-02 03:17:48] INFO django.server - "GET /meals/ HTTP/1.1" 200 38910
+[2025-06-02 03:17:49] INFO django.server - "GET /ingredients/ HTTP/1.1" 200 33249
+[2025-06-02 03:17:49] INFO django.server - "GET /deliveries/ HTTP/1.1" 200 27296
+[2025-06-02 03:17:50] INFO django.server - "GET /users/users/ HTTP/1.1" 200 30121
+[2025-06-02 03:17:51] INFO django.server - "GET /logs/ HTTP/1.1" 200 51939
+[2025-06-02 03:17:53] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 28211
+[2025-06-02 03:17:58] INFO django.server - "GET /ingredients/ HTTP/1.1" 200 33249
+[2025-06-02 03:18:00] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 28211
+[2025-06-02 03:54:09] INFO django.server - "GET /meals/create/ HTTP/1.1" 200 26516
+[2025-06-02 03:54:11] INFO django.server - "GET /ingredients/create/ HTTP/1.1" 200 21564
+[2025-06-02 03:54:13] INFO django.server - "GET /ingredients/ HTTP/1.1" 200 33249
+[2025-06-02 03:54:14] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 28211
+[2025-06-02 03:54:21] INFO django.server - "GET /deliveries/ HTTP/1.1" 200 27296
+[2025-06-02 03:54:25] INFO django.server - "GET /logs/ HTTP/1.1" 200 51774
+[2025-06-02 03:54:32] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 28211
+[2025-06-02 03:55:44] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 28277
+[2025-06-02 03:55:44] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 28277
+[2025-06-02 03:55:44] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 28277
+[2025-06-02 03:55:44] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 28277
+[2025-06-02 03:55:45] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 28277
+[2025-06-02 03:55:45] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 28277
+[2025-06-02 03:58:29] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33817
+[2025-06-02 03:58:38] INFO django.server - "GET /meals/ HTTP/1.1" 200 38910
+[2025-06-02 03:58:40] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33817
+[2025-06-02 03:58:41] WARNING django.request - Not Found: /favicon.ico
+[2025-06-02 03:58:41] WARNING django.server - "GET /favicon.ico HTTP/1.1" 404 6234
+[2025-06-02 03:58:55] INFO django.server - "GET /meals/ HTTP/1.1" 200 38910
+[2025-06-02 03:59:08] INFO django.server - "GET /meals/serve/1/ HTTP/1.1" 200 20821
+[2025-06-02 03:59:11] INFO django.server - "POST /meals/serve/1/ HTTP/1.1" 302 0
+[2025-06-02 03:59:11] INFO django.server - "GET /meals/ HTTP/1.1" 200 39215
+[2025-06-02 03:59:13] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33817
+[2025-06-02 04:03:02] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33817
+[2025-06-02 04:03:02] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33817
+[2025-06-02 04:03:02] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33817
+[2025-06-02 04:03:03] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33817
+[2025-06-02 04:03:03] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33817
+[2025-06-02 04:03:03] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33817
+[2025-06-02 04:03:05] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33817
+[2025-06-02 04:03:05] WARNING django.request - Not Found: /favicon.ico
+[2025-06-02 04:03:05] WARNING django.server - "GET /favicon.ico HTTP/1.1" 404 6234
+[2025-06-02 04:04:06] INFO django.utils.autoreload - D:\D\new\simple\mine\views.py changed, reloading.
+[2025-06-02 04:04:06] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-06-02 04:04:13] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33817
+[2025-06-02 04:04:15] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33817
+[2025-06-02 04:04:15] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33817
+[2025-06-02 04:04:16] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33817
+[2025-06-02 04:04:17] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33817
+[2025-06-02 04:04:18] WARNING django.request - Not Found: /favicon.ico
+[2025-06-02 04:04:18] WARNING django.server - "GET /favicon.ico HTTP/1.1" 404 6234
+[2025-06-02 04:04:32] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33817
+[2025-06-02 04:04:32] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33817
+[2025-06-02 04:04:32] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33817
+[2025-06-02 04:04:33] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33817
+[2025-06-02 04:04:34] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33817
+[2025-06-02 04:04:34] WARNING django.request - Not Found: /favicon.ico
+[2025-06-02 04:04:34] WARNING django.server - "GET /favicon.ico HTTP/1.1" 404 6234
+[2025-06-02 04:06:02] INFO django.utils.autoreload - D:\D\new\simple\mine\views.py changed, reloading.
+[2025-06-02 04:06:02] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-06-02 04:06:07] INFO django.server - "GET /meals/ HTTP/1.1" 200 39215
+[2025-06-02 04:06:09] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33817
+[2025-06-02 04:06:28] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33817
+[2025-06-02 04:06:28] WARNING django.request - Not Found: /favicon.ico
+[2025-06-02 04:06:28] WARNING django.server - "GET /favicon.ico HTTP/1.1" 404 6234
+[2025-06-02 04:06:46] INFO django.utils.autoreload - D:\D\new\simple\mine\views.py changed, reloading.
+[2025-06-02 04:06:46] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-06-02 04:08:49] INFO django.utils.autoreload - D:\D\new\simple\mine\views.py changed, reloading.
+[2025-06-02 04:08:49] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-06-02 04:08:55] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33817
+[2025-06-02 04:08:55] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33817
+[2025-06-02 04:08:55] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33817
+[2025-06-02 04:08:55] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33817
+[2025-06-02 04:08:57] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33817
+[2025-06-02 04:08:58] WARNING django.request - Not Found: /favicon.ico
+[2025-06-02 04:08:58] WARNING django.server - "GET /favicon.ico HTTP/1.1" 404 6234
+[2025-06-02 04:10:11] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33171
+[2025-06-02 04:10:12] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33171
+[2025-06-02 04:10:12] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33171
+[2025-06-02 04:10:13] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33171
+[2025-06-02 04:10:13] WARNING django.request - Not Found: /favicon.ico
+[2025-06-02 04:10:13] WARNING django.server - "GET /favicon.ico HTTP/1.1" 404 6234
+[2025-06-02 04:10:18] INFO django.server - "GET /deliveries/ HTTP/1.1" 200 27296
+[2025-06-02 04:10:22] INFO django.server - "GET /meals/ HTTP/1.1" 200 38910
+[2025-06-02 04:10:28] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33171
+[2025-06-02 04:12:09] INFO django.utils.autoreload - D:\D\new\simple\mine\views.py changed, reloading.
+[2025-06-02 04:12:09] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-06-02 04:12:48] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33128
+[2025-06-02 04:12:49] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33128
+[2025-06-02 04:12:49] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33128
+[2025-06-02 04:12:49] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33128
+[2025-06-02 04:12:50] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33128
+[2025-06-02 04:12:51] WARNING django.request - Not Found: /favicon.ico
+[2025-06-02 04:12:51] WARNING django.server - "GET /favicon.ico HTTP/1.1" 404 6234
+[2025-06-02 04:13:17] INFO django.utils.autoreload - D:\D\new\simple\mine\views.py changed, reloading.
+[2025-06-02 04:13:17] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-06-02 04:13:18] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33171
+[2025-06-02 04:15:31] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-06-02 04:15:34] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33819
+[2025-06-02 04:15:35] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33819
+[2025-06-02 04:15:35] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33819
+[2025-06-02 04:15:35] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33819
+[2025-06-02 04:15:45] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33819
+[2025-06-02 04:15:45] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33819
+[2025-06-02 04:15:46] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33819
+[2025-06-02 04:15:46] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33819
+[2025-06-02 04:15:46] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33819
+[2025-06-02 04:18:04] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 34279
+[2025-06-02 04:18:04] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 34279
+[2025-06-02 04:18:04] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 34279
+[2025-06-02 04:18:04] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 34279
+[2025-06-02 04:18:04] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 34279
+[2025-06-02 04:18:05] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 34279
+[2025-06-02 04:18:06] WARNING django.request - Not Found: /favicon.ico
+[2025-06-02 04:18:06] WARNING django.server - "GET /favicon.ico HTTP/1.1" 404 6234
+[2025-06-02 04:18:48] INFO django.utils.autoreload - D:\D\new\simple\mine\views.py changed, reloading.
+[2025-06-02 04:18:49] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-06-02 04:18:51] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 34279
+[2025-06-02 04:18:51] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 34279
+[2025-06-02 04:18:51] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 34279
+[2025-06-02 04:18:51] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 34279
+[2025-06-02 04:20:13] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33313
+[2025-06-02 04:20:13] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33313
+[2025-06-02 04:20:13] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33313
+[2025-06-02 04:20:13] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33313
+[2025-06-02 04:20:16] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33313
+[2025-06-02 04:20:16] WARNING django.request - Not Found: /favicon.ico
+[2025-06-02 04:20:16] WARNING django.server - "GET /favicon.ico HTTP/1.1" 404 6234
+[2025-06-02 04:20:33] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33819
+[2025-06-02 04:20:45] INFO django.utils.autoreload - D:\D\new\simple\mine\views.py changed, reloading.
+[2025-06-02 04:20:45] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-06-02 04:20:46] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33171
+[2025-06-02 04:20:47] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33171
+[2025-06-02 04:21:28] INFO django.server - "GET /meals/ HTTP/1.1" 200 38910
+[2025-06-02 04:21:29] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 33171
+[2025-06-02 04:24:13] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 36053
+[2025-06-02 04:24:14] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 36053
+[2025-06-02 04:25:33] INFO django.server - "GET /ingredients/create/ HTTP/1.1" 200 21564
+[2025-06-02 04:25:34] INFO django.server - "GET /ingredients/ HTTP/1.1" 200 33249
+[2025-06-02 04:25:37] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 36053
+[2025-06-02 04:27:06] INFO django.server - "GET /meals/ HTTP/1.1" 200 38910
+[2025-06-02 04:27:10] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 36053
+[2025-06-02 04:27:45] INFO django.utils.autoreload - D:\D\new\simple\mine\views.py changed, reloading.
+[2025-06-02 04:27:45] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-06-02 04:30:34] INFO django.utils.autoreload - D:\D\new\simple\mine\views.py changed, reloading.
+[2025-06-02 04:30:34] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-06-02 04:30:58] ERROR django.request - Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "D:\D\new\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\simple\mine\logging_utils.py", line 150, in wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\simple\mine\views.py", line 315, in dashboard_view
+    stock_quantity__lt=models.F('treshold_quantity')
+                       ^^^^^^
+NameError: name 'models' is not defined
+[2025-06-02 04:30:58] ERROR django.server - "GET /dashboard/ HTTP/1.1" 500 90575
+[2025-06-02 04:30:58] WARNING django.request - Not Found: /favicon.ico
+[2025-06-02 04:30:58] WARNING django.server - "GET /favicon.ico HTTP/1.1" 404 6234
+[2025-06-02 04:33:23] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-06-02 04:33:26] ERROR django.request - Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "D:\D\new\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\simple\mine\logging_utils.py", line 150, in wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\simple\mine\views.py", line 315, in dashboard_view
+    stock_quantity__lt=models.F('treshold_quantity')
+                       ^^^^^^
+NameError: name 'models' is not defined
+[2025-06-02 04:33:26] ERROR django.server - "GET /dashboard/ HTTP/1.1" 500 90455
+[2025-06-02 04:34:15] INFO django.utils.autoreload - D:\D\new\simple\mine\views.py changed, reloading.
+[2025-06-02 04:34:16] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-06-02 04:34:19] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 37092
+[2025-06-02 04:34:56] ERROR django.request - Internal Server Error: /dashboard/
+Traceback (most recent call last):
+  File "D:\D\new\env\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\contrib\auth\decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\simple\mine\logging_utils.py", line 150, in wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\simple\mine\views.py", line 362, in dashboard_view
+    return render(request, 'dashboard.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\backends\django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\loaders\cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\loaders\base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 518, in parse
+    raise self.error(token, e)
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\defaulttags.py", line 862, in do_for
+    nodelist_loop = parser.parse(
+                    ^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 489, in parse
+    raise self.error(token, e)
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 487, in parse
+    filter_expression = self.compile_filter(token.contents)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 609, in compile_filter
+    return FilterExpression(token, self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 705, in __init__
+    filter_func = parser.find_filter(filter_name)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\D\new\env\Lib\site-packages\django\template\base.py", line 615, in find_filter
+    raise TemplateSyntaxError("Invalid filter: '%s'" % filter_name)
+django.template.exceptions.TemplateSyntaxError: Invalid filter: 'div'
+[2025-06-02 04:34:56] ERROR django.server - "GET /dashboard/ HTTP/1.1" 500 374920
+[2025-06-02 04:37:23] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 42586
+[2025-06-02 04:37:53] INFO django.server - "GET /meals/ HTTP/1.1" 200 38910
+[2025-06-02 04:37:57] INFO django.server - "GET /meals/serve/1/ HTTP/1.1" 200 20821
+[2025-06-02 04:37:59] INFO django.server - "POST /meals/serve/1/ HTTP/1.1" 302 0
+[2025-06-02 04:37:59] INFO django.server - "GET /meals/ HTTP/1.1" 200 39215
+[2025-06-02 04:38:00] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 42586
+[2025-06-02 04:38:18] INFO django.server - "GET /deliveries/create/ HTTP/1.1" 200 27913
+[2025-06-02 04:38:29] INFO django.server - "POST /deliveries/create/ HTTP/1.1" 302 0
+[2025-06-02 04:38:29] INFO django.server - "GET /ingredients/ HTTP/1.1" 200 33249
+[2025-06-02 04:38:31] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 42708
+[2025-06-02 04:39:20] INFO django.server - "GET /users/users/ HTTP/1.1" 200 30121
+[2025-06-02 04:39:29] INFO django.server - "GET /users/logout/ HTTP/1.1" 302 0
+[2025-06-02 04:39:29] INFO django.server - "GET /users/login/ HTTP/1.1" 200 18025
+[2025-06-02 04:39:38] INFO django.server - "POST /users/login/ HTTP/1.1" 302 0
+[2025-06-02 04:39:38] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 40189
+[2025-06-02 04:39:44] INFO django.server - "GET /meals/ HTTP/1.1" 200 35693
+[2025-06-02 04:39:48] INFO django.server - "GET /ingredients/ HTTP/1.1" 200 24849
+[2025-06-02 04:39:51] INFO django.server - "GET /deliveries/ HTTP/1.1" 200 27412
+[2025-06-02 04:39:56] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 39902
+[2025-06-02 04:39:58] INFO django.server - "GET /users/profile/ HTTP/1.1" 200 19722
+[2025-06-02 04:40:00] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 39902
+[2025-06-02 04:41:49] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 39673
+[2025-06-02 04:41:50] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 39673
+[2025-06-02 04:41:52] INFO django.server - "GET /meals/ HTTP/1.1" 200 35468
+[2025-06-02 04:41:55] INFO django.server - "GET /ingredients/ HTTP/1.1" 200 24624
+[2025-06-02 04:41:56] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 39673
+[2025-06-02 04:42:20] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 39630
+[2025-06-02 04:44:44] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 42752
+[2025-06-02 04:44:46] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 42752
+[2025-06-02 04:44:53] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 39663
+[2025-06-02 04:44:57] INFO django.server - "GET /meals/ HTTP/1.1" 200 35458
+[2025-06-02 04:45:01] INFO django.server - "GET /meals/ HTTP/1.1" 200 35458
+[2025-06-02 04:45:10] INFO django.server - "GET /users/logout/ HTTP/1.1" 302 0
+[2025-06-02 04:45:10] INFO django.server - "GET /users/login/ HTTP/1.1" 200 17790
+[2025-06-02 04:45:20] INFO django.server - "POST /users/login/ HTTP/1.1" 302 0
+[2025-06-02 04:45:20] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 39950
+[2025-06-02 04:45:23] INFO django.server - "GET /meals/ HTTP/1.1" 200 35458
+[2025-06-02 04:46:09] INFO django.server - "GET /meals/ HTTP/1.1" 200 35464
+[2025-06-02 04:46:09] INFO django.server - "GET /meals/ HTTP/1.1" 200 35464
+[2025-06-02 04:46:09] INFO django.server - "GET /meals/ HTTP/1.1" 200 35464
+[2025-06-02 04:46:09] INFO django.server - "GET /meals/ HTTP/1.1" 200 35464
+[2025-06-02 04:46:11] INFO django.server - "GET /users/logout/ HTTP/1.1" 302 0
+[2025-06-02 04:46:11] INFO django.server - "GET /users/login/ HTTP/1.1" 200 17796
+[2025-06-02 04:46:24] INFO django.server - "POST /users/login/ HTTP/1.1" 302 0
+[2025-06-02 04:46:24] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 39956
+[2025-06-02 04:46:27] INFO django.server - "GET /meals/ HTTP/1.1" 200 35464
+[2025-06-02 04:47:41] INFO django.utils.autoreload - D:\D\new\simple\users\views.py changed, reloading.
+[2025-06-02 04:47:41] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-06-02 04:47:46] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 42752
+[2025-06-02 04:47:47] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 42752
+[2025-06-02 04:47:50] INFO django.server - "GET /meals/ HTTP/1.1" 200 35464
+[2025-06-02 04:47:50] INFO django.server - "GET /meals/ HTTP/1.1" 200 35464
+[2025-06-02 04:47:51] INFO django.server - "GET /users/logout/ HTTP/1.1" 302 0
+[2025-06-02 04:47:51] INFO django.server - "GET /users/login/ HTTP/1.1" 200 17796
+[2025-06-02 04:47:58] INFO django.server - "POST /users/login/ HTTP/1.1" 302 0
+[2025-06-02 04:47:58] INFO django.server - "GET /meals/ HTTP/1.1" 200 35751
+[2025-06-02 04:48:02] INFO django.server - "GET /users/profile/ HTTP/1.1" 200 19493
+[2025-06-02 04:48:06] INFO django.server - "GET /deliveries/ HTTP/1.1" 200 27183
+[2025-06-02 04:48:09] INFO django.server - "GET /users/logout/ HTTP/1.1" 302 0
+[2025-06-02 04:48:09] INFO django.server - "GET /users/login/ HTTP/1.1" 200 17796
+[2025-06-02 04:49:00] INFO django.server - "GET /users/login/ HTTP/1.1" 200 16943
+[2025-06-02 04:49:05] INFO django.server - "GET /users/logout/ HTTP/1.1" 302 0
+[2025-06-02 04:49:05] INFO django.server - "GET /users/login/ HTTP/1.1" 200 17235
+[2025-06-02 04:49:09] INFO django.server - "GET /meals/ HTTP/1.1" 200 34898
+[2025-06-02 04:49:12] INFO django.server - "GET /users/logout/ HTTP/1.1" 302 0
+[2025-06-02 04:49:12] INFO django.server - "GET /users/login/ HTTP/1.1" 200 17235
+[2025-06-02 04:49:21] INFO django.server - "POST /users/login/ HTTP/1.1" 302 0
+[2025-06-02 04:49:21] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 43076
+[2025-06-02 04:49:26] INFO django.server - "GET /logs/ HTTP/1.1" 200 51587
+[2025-06-02 04:49:28] INFO django.server - "GET /users/users/ HTTP/1.1" 200 30189
+[2025-06-02 04:49:36] INFO django.server - "GET /users/logout/ HTTP/1.1" 302 0
+[2025-06-02 04:49:36] INFO django.server - "GET /users/login/ HTTP/1.1" 200 17235
+[2025-06-02 04:49:43] INFO django.server - "POST /users/login/ HTTP/1.1" 302 0
+[2025-06-02 04:49:43] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 42312
+[2025-06-02 04:49:51] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 42026
+[2025-06-02 04:49:52] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 42026
+[2025-06-02 04:49:54] INFO django.server - "GET /logs/ HTTP/1.1" 200 50825
+[2025-06-02 04:50:17] INFO django.server - "GET /logs/ HTTP/1.1" 200 50575
+[2025-06-02 04:50:20] INFO django.server - "GET /logs/ HTTP/1.1" 200 50577
+[2025-06-02 04:50:21] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 41783
+[2025-06-02 04:50:35] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 41783
+[2025-06-02 04:50:49] INFO django.server - "GET /users/logout/ HTTP/1.1" 302 0
+[2025-06-02 04:50:49] INFO django.server - "GET /users/login/ HTTP/1.1" 200 17235
+[2025-06-02 04:50:53] INFO django.server - "POST /users/login/ HTTP/1.1" 302 0
+[2025-06-02 04:50:53] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 43076
+[2025-06-02 04:50:58] INFO django.server - "GET /logs/ HTTP/1.1" 200 51591
+[2025-06-02 04:51:00] INFO django.server - "GET /dashboard/ HTTP/1.1" 200 42789
+[2025-06-02 00:00:46] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-06-02 00:00:51] WARNING django.request - Not Found: /
+[2025-06-02 00:00:51] WARNING django.server - "GET / HTTP/1.1" 404 6183
+[2025-06-02 00:00:51] WARNING django.request - Not Found: /favicon.ico
+[2025-06-02 00:00:51] WARNING django.server - "GET /favicon.ico HTTP/1.1" 404 6234
+[2025-06-02 00:04:05] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-06-02 00:04:11] ERROR django.request - Internal Server Error: /
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/usr/local/lib/python3.10/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+TypeError: login() missing 1 required positional argument: 'user'
+[2025-06-02 00:04:11] ERROR django.server - "GET / HTTP/1.1" 500 58289
+[2025-06-02 00:04:54] INFO django.utils.autoreload - /app/simple/urls.py changed, reloading.
+[2025-06-02 00:04:55] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-06-02 00:05:36] INFO django.utils.autoreload - /app/simple/urls.py changed, reloading.
+[2025-06-02 00:05:37] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-06-02 00:06:48] INFO django.utils.autoreload - Watching for file changes with StatReloader
+[2025-06-02 00:06:53] INFO django.server - "GET / HTTP/1.1" 200 16958
+[2025-06-02 00:06:58] INFO django.server - "GET /mine/meals/ HTTP/1.1" 200 34938
+[2025-06-02 00:07:04] INFO django.server - "GET /users/logout/ HTTP/1.1" 302 0
+[2025-06-02 00:07:04] INFO django.server - "GET /users/login/ HTTP/1.1" 200 17250
+[2025-06-02 00:07:14] INFO django.server - "POST /users/login/ HTTP/1.1" 302 0
+[2025-06-02 00:07:14] INFO django.server - "GET /mine/dashboard/ HTTP/1.1" 200 43151
+[2025-06-02 00:07:41] INFO django.server - "GET /users/logout/ HTTP/1.1" 302 0
+[2025-06-02 00:07:41] INFO django.server - "GET /users/login/ HTTP/1.1" 200 17250
+[2025-06-02 00:09:17] INFO django.server - "GET /users/login/ HTTP/1.1" 200 12649
+[2025-06-02 00:09:30] INFO django.server - "GET /users/login/ HTTP/1.1" 200 16958
+[2025-06-02 00:10:53] INFO django.server - "GET /users/login/ HTTP/1.1" 200 14866
+[2025-06-02 00:11:11] INFO django.server - "POST /users/login/ HTTP/1.1" 302 0
+[2025-06-02 00:11:11] INFO django.server - "GET /mine/dashboard/ HTTP/1.1" 200 43178
+[2025-06-02 00:11:14] INFO django.server - "GET /users/logout/ HTTP/1.1" 302 0
+[2025-06-02 00:11:14] INFO django.server - "GET /users/login/ HTTP/1.1" 200 15158
+[2025-06-02 00:11:23] INFO django.server - "POST /users/login/ HTTP/1.1" 302 0
+[2025-06-02 00:11:24] INFO django.server - "GET /mine/dashboard/ HTTP/1.1" 200 42166
+[2025-06-02 00:11:28] INFO django.server - "GET /users/logout/ HTTP/1.1" 302 0
+[2025-06-02 00:11:28] INFO django.server - "GET /users/login/ HTTP/1.1" 200 15158
+[2025-06-02 00:11:29] INFO django.server - "GET /mine/meals/ HTTP/1.1" 200 32846
+[2025-06-02 00:11:33] INFO django.server - "GET /mine/meals/ HTTP/1.1" 200 32846
+[2025-06-02 00:14:58] INFO django.server - "GET /mine/meals/ HTTP/1.1" 200 32847
+[2025-06-02 00:14:59] INFO django.server - "GET /mine/meals/ HTTP/1.1" 200 32847
+[2025-06-02 00:14:59] INFO django.server - "GET /mine/meals/ HTTP/1.1" 200 32847
+[2025-06-02 00:14:59] INFO django.server - "GET /users/login/ HTTP/1.1" 200 14867
+[2025-06-02 00:15:05] INFO django.server - "POST /users/login/ HTTP/1.1" 302 0
+[2025-06-02 00:15:05] INFO django.server - "GET /mine/dashboard/ HTTP/1.1" 200 43178
+[2025-06-02 00:15:08] INFO django.server - "GET /mine/logs/ HTTP/1.1" 200 51660
+[2025-06-02 00:15:08] INFO django.server - "GET /mine/dashboard/ HTTP/1.1" 200 42891
+[2025-06-02 00:15:11] INFO django.server - "GET /users/logout/ HTTP/1.1" 302 0
+[2025-06-02 00:15:11] INFO django.server - "GET /users/login/ HTTP/1.1" 200 15159
+[2025-06-02 00:15:18] INFO django.server - "POST /users/login/ HTTP/1.1" 302 0
+[2025-06-02 00:15:18] INFO django.server - "GET /mine/dashboard/ HTTP/1.1" 200 42166
+[2025-06-02 00:15:21] INFO django.server - "GET /mine/ingredients/ HTTP/1.1" 200 32502
+[2025-06-02 00:15:22] INFO django.server - "GET /mine/dashboard/ HTTP/1.1" 200 41880
+[2025-06-02 00:15:24] INFO django.server - "GET /users/logout/ HTTP/1.1" 302 0
+[2025-06-02 00:15:24] INFO django.server - "GET /users/login/ HTTP/1.1" 200 15159
+[2025-06-02 00:15:26] INFO django.server - "GET /users/login/ HTTP/1.1" 200 14867
+[2025-06-02 00:15:27] INFO django.server - "GET /users/login/ HTTP/1.1" 200 14867
+[2025-06-02 00:15:27] INFO django.server - "GET /users/login/ HTTP/1.1" 200 14867
+[2025-06-02 00:15:27] INFO django.server - "GET /users/login/ HTTP/1.1" 200 14867
+[2025-06-02 00:15:38] INFO django.server - "POST /users/login/ HTTP/1.1" 302 0
+[2025-06-02 00:15:38] INFO django.server - "GET /mine/meals/ HTTP/1.1" 200 35256
+[2025-06-02 00:15:40] INFO django.server - "GET /mine/ingredients/ HTTP/1.1" 200 24105
+[2025-06-02 00:15:41] INFO django.server - "GET /mine/meals/ HTTP/1.1" 200 34969
+[2025-06-02 00:15:46] INFO django.server - "GET /users/logout/ HTTP/1.1" 302 0
+[2025-06-02 00:15:46] INFO django.server - "GET /users/login/ HTTP/1.1" 200 15159
+[2025-06-02 00:15:48] INFO django.server - "GET /users/login/ HTTP/1.1" 200 14867
+[2025-06-02 00:15:48] INFO django.server - "GET /users/login/ HTTP/1.1" 200 14867
+[2025-06-02 00:15:48] INFO django.server - "GET /users/login/ HTTP/1.1" 200 14867
+[2025-06-02 00:15:48] INFO django.server - "GET /users/login/ HTTP/1.1" 200 14867
+[2025-06-02 00:15:48] INFO django.server - "GET /users/login/ HTTP/1.1" 200 14867
+[2025-06-02 00:15:49] INFO django.server - "GET /users/login/ HTTP/1.1" 200 14867
+[2025-06-02 00:15:49] INFO django.server - "GET /users/login/ HTTP/1.1" 200 14867
+[2025-06-02 00:15:49] INFO django.server - "GET /users/login/ HTTP/1.1" 200 14867
+[2025-06-02 00:15:49] INFO django.server - "GET /users/login/ HTTP/1.1" 200 14867
+[2025-06-02 00:15:50] INFO django.server - "GET /users/login/ HTTP/1.1" 200 14867
+[2025-06-02 00:15:50] INFO django.server - "GET /users/login/ HTTP/1.1" 200 14867
+[2025-06-02 00:15:50] INFO django.server - "GET /users/login/ HTTP/1.1" 200 14867
+[2025-06-02 00:15:50] INFO django.server - "GET /users/login/ HTTP/1.1" 200 14867
+[2025-06-02 00:15:50] INFO django.server - "GET /users/login/ HTTP/1.1" 200 14867
+[2025-06-02 00:15:53] INFO django.server - "GET /users/login/ HTTP/1.1" 200 14867
+[2025-06-02 00:15:53] INFO django.server - "GET /users/login/ HTTP/1.1" 200 14867
+[2025-06-02 00:15:53] INFO django.server - "GET /users/login/ HTTP/1.1" 200 14867
+[2025-06-02 00:15:53] INFO django.server - "GET /users/login/ HTTP/1.1" 200 14867
+[2025-06-02 00:15:54] INFO django.server - "GET /users/login/ HTTP/1.1" 200 14867
+[2025-06-02 00:15:54] INFO django.server - "GET /users/login/ HTTP/1.1" 200 14867
+[2025-06-02 00:16:02] INFO django.server - "POST /users/login/ HTTP/1.1" 302 0
+[2025-06-02 00:16:02] INFO django.server - "GET /mine/dashboard/ HTTP/1.1" 200 43178
+[2025-06-02 00:16:11] INFO django.server - "GET /users/profile/ HTTP/1.1" 200 21553
+[2025-06-02 00:16:13] INFO django.server - "GET /users/users/1/edit/ HTTP/1.1" 200 22361
+[2025-06-02 00:16:14] INFO django.server - "GET /users/users/ HTTP/1.1" 200 30265
+[2025-06-02 00:16:16] INFO django.server - "GET /mine/dashboard/ HTTP/1.1" 200 42891

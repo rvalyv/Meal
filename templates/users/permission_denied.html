@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+
+{% block title %}Access Denied - Meal & Inventory System{% endblock %}
+
+{% block extra_css %}
+<style>
+    .error-container {
+        min-height: calc(100vh - 200px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 1rem;
+    }
+
+    .error-card {
+        background: var(--surface-color);
+        border-radius: 1rem;
+        box-shadow: var(--shadow-lg);
+        overflow: hidden;
+        max-width: 500px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .error-header {
+        background: linear-gradient(135deg, var(--accent-color), #b91c1c);
+        color: white;
+        padding: 2rem;
+    }
+
+    .error-icon {
+        width: 5rem;
+        height: 5rem;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        font-size: 2rem;
+    }
+
+    .error-code {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+    }
+
+    .error-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        opacity: 0.9;
+    }
+
+    .error-body {
+        padding: 2rem;
+    }
+
+    .error-message {
+        font-size: 1.125rem;
+        color: var(--text-secondary);
+        margin-bottom: 2rem;
+        line-height: 1.6;
+    }
+
+    .error-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.875rem 1.75rem;
+        border: none;
+        border-radius: 0.75rem;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        color: white;
+        box-shadow: var(--shadow);
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+        text-decoration: none;
+        color: white;
+    }
+
+    .btn-secondary {
+        background-color: #f3f4f6;
+        color: var(--text-primary);
+        border: 2px solid var(--border-color);
+    }
+
+    .btn-secondary:hover {
+        background-color: #e5e7eb;
+        border-color: var(--text-secondary);
+        text-decoration: none;
+        color: var(--text-primary);
+    }
+
+    @media (max-width: 768px) {
+        .error-header {
+            padding: 1.5rem;
+        }
+
+        .error-code {
+            font-size: 2.5rem;
+        }
+
+        .error-title {
+            font-size: 1.25rem;
+        }
+
+        .error-body {
+            padding: 1.5rem;
+        }
+
+        .error-actions {
+            flex-direction: column;
+            align-items: stretch;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="error-container">
+    <div class="error-card">
+        <div class="error-header">
+            <div class="error-icon">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            <div class="error-code">403</div>
+            <h1 class="error-title">Access Denied</h1>
+        </div>
+
+        <div class="error-body">
+            <p class="error-message">
+                You don't have permission to access this page. Please contact your administrator if you believe this is an error.
+            </p>
+
+            <div class="error-actions">
+                <a href="{% url 'dashboard' %}" class="btn btn-primary">
+                    <i class="fas fa-home"></i>
+                    Go to Dashboard
+                </a>
+                <a href="{% url 'login' %}" class="btn btn-secondary">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Login
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,260 @@
+{% extends 'base.html' %}
+
+{% block title %}User Profile - {{ request.user.username }}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .profile-container {
+        min-height: calc(100vh - 200px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 1rem;
+    }
+
+    .profile-card {
+        background: var(--surface-color);
+        border-radius: 1rem;
+        box-shadow: var(--shadow-lg);
+        overflow: hidden;
+        max-width: 500px;
+        width: 100%;
+    }
+
+    .profile-header {
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        color: white;
+        padding: 2rem;
+        text-align: center;
+    }
+
+    .profile-avatar {
+        width: 5rem;
+        height: 5rem;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        font-size: 2rem;
+        font-weight: 700;
+    }
+
+    .profile-title {
+        font-size: 1.75rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .profile-subtitle {
+        opacity: 0.9;
+        font-size: 1rem;
+    }
+
+    .profile-body {
+        padding: 2rem;
+    }
+
+    .profile-info {
+        margin-bottom: 2rem;
+    }
+
+    .info-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        margin-bottom: 0.75rem;
+        background: #f8fafc;
+        border-radius: 0.75rem;
+        border: 2px solid var(--border-color);
+        transition: all 0.2s;
+    }
+
+    .info-item:hover {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+    }
+
+    .info-label {
+        font-weight: 600;
+        color: var(--text-secondary);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .info-value {
+        font-weight: 600;
+        color: var(--text-primary);
+    }
+
+    .role-badge {
+        background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 2rem;
+        font-weight: 600;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .profile-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.875rem 1.75rem;
+        border: none;
+        border-radius: 0.75rem;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.2s;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, var(--secondary-color), #d97706);
+        color: white;
+        box-shadow: var(--shadow);
+    }
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+        text-decoration: none;
+        color: white;
+    }
+
+    .btn-secondary {
+        background-color: #f3f4f6;
+        color: var(--text-primary);
+        border: 2px solid var(--border-color);
+    }
+
+    .btn-secondary:hover {
+        background-color: #e5e7eb;
+        border-color: var(--text-secondary);
+        text-decoration: none;
+        color: var(--text-primary);
+    }
+
+    @media (max-width: 768px) {
+        .profile-header {
+            padding: 1.5rem;
+        }
+
+        .profile-title {
+            font-size: 1.5rem;
+        }
+
+        .profile-body {
+            padding: 1.5rem;
+        }
+
+        .profile-actions {
+            flex-direction: column;
+            align-items: stretch;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <div class="profile-card">
+        <div class="profile-header">
+            <div class="profile-avatar">
+                {{ request.user.username|first|upper }}
+            </div>
+            <h1 class="profile-title">
+                <i class="fas fa-user-circle"></i>
+                User Profile
+            </h1>
+            <p class="profile-subtitle">{{ request.user.username }}</p>
+        </div>
+
+        <div class="profile-body">
+            <div class="profile-info">
+                <div class="info-item">
+                    <span class="info-label">
+                        <i class="fas fa-user"></i>
+                        Username
+                    </span>
+                    <span class="info-value">{{ request.user.username }}</span>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-label">
+                        <i class="fas fa-envelope"></i>
+                        Email
+                    </span>
+                    <span class="info-value">{{ request.user.email|default:"Not provided" }}</span>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-label">
+                        <i class="fas fa-id-card"></i>
+                        First Name
+                    </span>
+                    <span class="info-value">{{ request.user.first_name|default:"Not provided" }}</span>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-label">
+                        <i class="fas fa-id-card"></i>
+                        Last Name
+                    </span>
+                    <span class="info-value">{{ request.user.last_name|default:"Not provided" }}</span>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-label">
+                        <i class="fas fa-user-tag"></i>
+                        Role
+                    </span>
+                    <span class="role-badge">
+                        {% if profile.role == 'admin' %}
+                            <i class="fas fa-shield-alt"></i>
+                        {% elif profile.role == 'manager' %}
+                            <i class="fas fa-user-tie"></i>
+                        {% elif profile.role == 'chef' %}
+                            <i class="fas fa-utensils"></i>
+                        {% endif %}
+                        {{ profile.role|title }}
+                    </span>
+                </div>
+            </div>
+
+            <div class="profile-actions">
+                <a href="{% url 'edit_user' user.id %}" class="btn btn-primary">
+                    <i class="fas fa-edit"></i>
+                    Edit Profile
+                </a>
+                <a href="{% url 'dashboard' %}" class="btn btn-secondary">
+                    <i class="fas fa-tachometer-alt"></i>
+                    Dashboard
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
